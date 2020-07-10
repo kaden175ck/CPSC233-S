@@ -36,7 +36,10 @@ public class Party {
 	// ...implementation goes here...
 		return name;
 	}
-	
+	/**
+ 	* ...method setProjectedPercentageOfVotes documentation comment...
+ 	* @param projectedPercentageOfVotes
+ 	*/
 	public void setProjectedPercentageOfVotes(float projectedPercentageOfVotes) {
 	// ...implementation goes here...
 		if(projectedPercentageOfVotes >= 0 && projectedPercentageOfVotes <= 1)
