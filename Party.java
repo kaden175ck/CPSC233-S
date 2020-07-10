@@ -7,14 +7,16 @@
 *(not the type, but what the argument represents and what are valid values) and what the method returns (again, not the type, but what the value returned represents). 
 *It should describe WHAT and WHY, not HOW. 
 *
-*
+* @author Haoyang Shi
 */
 public class Party {
+	// ...implementation goes here...
 	private String name;
 	private float projectedNumberOfSeats;
 	private float projectedPercentageOfVotes;
 	
 	public Party(String partyName) {
+	// ...implementation goes here...
 		name = partyName;
 	}
 	
