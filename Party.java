@@ -1,3 +1,9 @@
+/**
+*Documentation(I will write it later)
+*
+*
+*
+*/
 public class Party {
 	private String name;
 	private float projectedNumberOfSeats;
