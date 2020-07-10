@@ -1,6 +1,11 @@
 /**
-*Documentation(I will write it later)
-*
+*%W% %E% Haoyang Shi
+*Class description goes here(I will write it later)
+*Javadoc (/**   */) is used to document classes and method.  
+*The audience for this documentation is for other programmers that want to use your class and call your methods in their code. 
+*They are interested in how to create and use your class, what you are looking for in the arguments 
+*(not the type, but what the argument represents and what are valid values) and what the method returns (again, not the type, but what the value returned represents). 
+*It should describe WHAT and WHY, not HOW. 
 *
 *
 */
