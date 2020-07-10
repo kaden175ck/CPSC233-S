@@ -57,11 +57,11 @@ public class Party {
 		int i;
 		for(i=1; i<=maxStars; i++) {
 			if(i<=index)
-			str+="*";
+				str+="*";
 			else
-			str+=" ";
+				str+=" ";
 			if(i == starsNeededForMajority)
-			str+="|";
+				str+="|";
 		}
 		return str;
 	}
