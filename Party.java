@@ -22,7 +22,7 @@ public class Party {
 	}
 	
 	public void setProjectedPercentageOfVotes(float projectedPercentageOfVotes) {
-		if(projectedPercentageOfVotes>=0&&projectedPercentageOfVotes<=1)
+		if(projectedPercentageOfVotes >= 0 && projectedPercentageOfVotes <= 1)
 		this.projectedPercentageOfVotes = projectedPercentageOfVotes;
 	}
 
@@ -31,7 +31,7 @@ public class Party {
 	}
 
 	public void setProjectedNumberOfSeats(float projectedNumberOfSeats) {
-		if(projectedNumberOfSeats>=0)
+		if(projectedNumberOfSeats >= 0)
 		this.projectedNumberOfSeats = projectedNumberOfSeats;
 	}
 
@@ -41,36 +41,32 @@ public class Party {
 	}
 
 	public double projectedPercentOfSeats(int totalNumberOfSeats) {
-		if(totalNumberOfSeats<=0)
+		if(totalNumberOfSeats <=0 )
 			return 0.0;
-		return (double)(getProjectedNumberOfSeats()/totalNumberOfSeats);
+		return (double)(getProjectedNumberOfSeats() / totalNumberOfSeats);
 	}
 	
-	
-	
-	public static String printStar(int maxStars, int starsNeededForMajority,double index) 
+	public static String printStar(int maxStars, int starsNeededForMajority, double index) 
 	{
-          String str="";
-		
+          String str="";	
 		int i;
-		for(i=1;i<=maxStars;i++)
+		for(i=1; i<=maxStars; i++)
 		{
 			if(i<=index)
 			str+="*";
 			else
 				str+=" ";
-			if(i==starsNeededForMajority)
+			if(i == starsNeededForMajority)
 				str+="|";
 		}
 		return str;
 	}
-	public String textVisualizationBySeats(int maxStars, int starsNeededForMajority, double numOfSeatsPerStar) {
-		
+	
+	public String textVisualizationBySeats(int maxStars, int starsNeededForMajority, double numOfSeatsPerStar) {	
 		return printStar(maxStars,starsNeededForMajority,(int)Math.floor(getProjectedNumberOfSeats()/numOfSeatsPerStar))+" "+toString();
 	}
 
 	public String textVisualizationByVotes(int maxStars, int starsNeededForMajority, double percentOfVotesPerStar) {
-		
 		return printStar(maxStars,starsNeededForMajority,(int)Math.floor(getProjectedPercentageOfVotes()*100/percentOfVotesPerStar))+" "+toString();
 	}
 }
