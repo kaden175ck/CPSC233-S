@@ -1,22 +1,19 @@
 /**
-*%W% %E% Haoyang Shi
-*Class description goes here(I will write it later)
-*Javadoc (/**   */) is used to document classes and method.  
-*The audience for this documentation is for other programmers that want to use your class and call your methods in their code. 
-*They are interested in how to create and use your class, what you are looking for in the arguments 
-*(not the type, but what the argument represents and what are valid values) and what the method returns (again, not the type, but what the value returned represents). 
-*It should describe WHAT and WHY, not HOW. 
-*
-* @author Haoyang Shi
-*/
+  * @ClassName: Party
+  * @Description:  represents a single political party
+  * @author Haoyang Shi
+  * @date 2020 7.9 
+  */
 public class Party {
-	// ...implementation goes here...
-	private String name;
-	private float projectedNumberOfSeats;
-	private float projectedPercentageOfVotes;
+	private String name;//any string
+	private float projectedNumberOfSeats;//must be a non-negative value
+	private float projectedPercentageOfVotes;//must be a value between 0 and 1 (both inclusive).
 	
+	/** 
+	  * <p>Party constructor with one param </p>
+	  * @param partyName
+	  */
 	public Party(String partyName) {
-	// ...implementation goes here...
 		name = partyName;
 	}
 	
