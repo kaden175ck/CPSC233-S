@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Poll {
 	private String name = "Unnamed Poll";
 	private Party[] parties;
@@ -10,8 +13,6 @@ public class Poll {
 		}else {
 			parties = new Party[10];
 		}
-
-
 	}
 
 	public String getPollName() {
@@ -23,41 +24,43 @@ public class Poll {
 	}
 
 	public void addParty(Party aParty) {
-		if(aParty == null)
-		System.out.print("The enter message is empty.");
-		for(Party party: parties) {
-			if (party.getName().equalsIgnoreCase(aParty.getName())){
-				party = aParty;
+		if(aParty == null) {
+			System.out.print("The enter message is empty.");
+			return;
+		}
+		for(int i = 0; (i < parties.length)&&(parties[i] != null); i++) {
+			if(parties[i].getName().toUpperCase().equals(aParty.getName().toUpperCase())){
+				parties[i] = aParty;
+				return;
 			}
 		}
-		if(numberOfParties < parties.length) {
+		if(numberOfParties < parties.length){
 			parties[numberOfParties] = aParty;
-			numberOfParties++;
-		}else {
-			System.out.println("No room.");
+		    numberOfParties++;
 		}
 	}
 
-
-
 	public Party getParty(String name) {
 		for(Party party:parties) {
-		if(party.getName().equals(name)) {
+		if((party != null) && (party.getName().toUpperCase().equals(name.toUpperCase()))) {
 			return party;
 			}
 		}
 		return null;
 	}
 
+
+
 	public Party[] getPartiesSortedBySeats() {
+		Arrays.sort(parties, Collections.reverseOrder());
 		return parties;
 	}
 
 	public Party[] getPartiesSortedByVotes() {
+		Arrays.sort(parties, Collections.reverseOrder());
 		return parties;
 	}
 
-	@Override
 	public String toString() {
 		String result = name +"\n";
 		for(Party aParty: parties) {
