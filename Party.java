@@ -100,7 +100,7 @@ public class Party implements Comparable<Party> {
 
 	/**
 	  * <p>Title: toString</p>
-	  * <p>Description: express the message in a sentence</p>
+	  * <p>Description: express the message</p>
 	  * @return
 	  * @see java.lang.Object#toString()
 	  */
