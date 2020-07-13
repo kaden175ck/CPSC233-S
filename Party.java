@@ -127,7 +127,8 @@ public class Party implements Comparable<Party> {
 	/**
 	  * printStar
 	  * @Title: printStar
-	  * @Description: displaying a row of stars that represents the number of seats 
+	  * @Description: this is the piece of code that both textVisualizationByVotes and textVisualizationBySeats methods have in common.
+	  * displaying a row of stars that represents the number of seats 
 	  * and a bar to indicate the number of seats needed for a majority in parliament. 
 	  * @param @param maxStars
 	  * @param @param starsNeededForMajority
@@ -136,6 +137,9 @@ public class Party implements Comparable<Party> {
 	  * @return String    
 	  */
 	public static String printStar(int maxStars, int starsNeededForMajority, double index) {
+		/**starsNeededForMajority representing the minimum number of stars that would represent a majority.
+		  *maxStars representing the maximum number of stars that should be displayed on a single line.
+		  */
         String str= "";
 		int i;
 		for(i = 1; i <= maxStars; i++){
@@ -161,6 +165,7 @@ public class Party implements Comparable<Party> {
 	  * @return String    
 	  */
 	public String textVisualizationBySeats(int maxStars, int starsNeededForMajority, double numOfSeatsPerStar) {
+		// numOfSeatsPerStar indicates how many seats are represented by a single star
 		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedNumberOfSeats() / numOfSeatsPerStar)) + " " + toString();
 	}
 
@@ -168,7 +173,7 @@ public class Party implements Comparable<Party> {
 	/**
 	  * text Visualization By Votes
 	  * @Title: textVisualizationByVotes
-	  * @Description: gives a visual representation of the data relevant to this party
+	  * @Description:  visual representation to represent the percentage of votes the party is expected to win
 	  * @param @param maxStars
 	  * @param @param starsNeededForMajority
 	  * @param @param percentOfVotesPerStar
@@ -179,9 +184,9 @@ public class Party implements Comparable<Party> {
 	} 
 	
 	
-	/*
+	/**
 	  * <p>Title: compareTo</p>
-	  * <p>Description: </p>
+	  * <p>Description: 请将这里的中文改成英文并简述下面compareto这段code的作用</p>
 	  * @param o
 	  * @return
 	  * @see java.lang.Comparable#compareTo(java.lang.Object)
