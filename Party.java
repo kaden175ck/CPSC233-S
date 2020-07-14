@@ -1,106 +1,191 @@
 /**
   * @ClassName: Party
-  * @Description:  represents a single political party
+  * @Description: This class represents the data of a single political party by using stars and bars.
   * @author Haoyang Shi
-  * @date 2020 7.9
+  * @date 2020 7.9 
   */
-public class Party  implements Comparable<Party> {
-	private String name;//any string
-	private float projectedNumberOfSeats;//must be a non-negative value
-	private float projectedPercentageOfVotes;//must be a value between 0 and 1 (both inclusive).
-
+public class Party{
+	private String name;
+	private float projectedNumberOfSeats;//the projected number of seats must be a non-negative value
+	private float projectedPercentageOfVotes;//the projected percentage of votes must be a value between 0 and 1 (both inclusive). 
+	
+	
 	/**
-	  * <p>Party constructor with one param </p>
+	  * <p>Title: Party</p>
+	  * <p>Description: Party constructor that takes the name of the party as argument</p>
 	  * @param partyName
 	  */
 	public Party(String partyName) {
 		name = partyName;
 	}
+	
 
+	/**
+	  * <p>Title: Party</p>
+	  * <p>Description: Another Party constructor that takes three parameters</p>
+	  * @param partyName
+	  * @param projectedNumberOfSeats
+	  * @param projectedPercentageOfVotes
+	  */
 	public Party(String partyName, float projectedNumberOfSeats, float projectedPercentageOfVotes) {
-	// ...implementation goes here...
 		name = partyName;
 		setProjectedNumberOfSeats(projectedNumberOfSeats);
 		setProjectedPercentageOfVotes(projectedPercentageOfVotes);
 	}
-
+	
+		
+	/** @getProjectedPercentageOfVotes
+	  * getProjectedPercentageOfVotes
+	  * @Description: get projected percentage of votes
+	  * @return float   
+	  */
 	public float getProjectedPercentageOfVotes() {
-	// ...implementation goes here...
 		return projectedPercentageOfVotes;
 	}
-
+	
+	
+	/** @Title: getName
+	  * getName
+	  * @Description: get the name of the party
+	  * @return String  
+	  */
 	public String getName() {
-	// ...implementation goes here...
 		return name;
 	}
+	
+	
 	/**
- 	* ...method setProjectedPercentageOfVotes documentation comment...
- 	* @param projectedPercentageOfVotes
- 	*/
+	  * @Title: setProjectedPercentageOfVotes
+	  * @Description: set the projected percentage of votes and check its validation
+	  * @param projectedPercentageOfVotes  
+	  * @return void    
+	  */	
 	public void setProjectedPercentageOfVotes(float projectedPercentageOfVotes) {
-	// ...implementation goes here...
-		if(projectedPercentageOfVotes >= 0 && projectedPercentageOfVotes <= 1)
+		//make sure the percentage of votes are value between 0 and 1 (both inclusive)
+		if(projectedPercentageOfVotes >= 0 && projectedPercentageOfVotes <= 1) {
 		this.projectedPercentageOfVotes = projectedPercentageOfVotes;
+		}
+		else {
+			System.out.println("out of range");
+		}
 	}
+	
 
+	/**
+	  * getter method: get Projected Number Of Seats
+	  * @Title: getProjectedNumberOfSeats  
+	  * @Description: get Projected Number Of Seats
+	  * @return float   
+	  */
 	public float getProjectedNumberOfSeats() {
-	// ...implementation goes here...
 		return projectedNumberOfSeats;
 	}
+	
 
+	/**
+	  * setter method: set Projected Number Of Seats
+	  * @Title: setProjectedNumberOfSeats
+	  * @Description: check the validation of projected Number Of Seats
+	  * @param projectedNumberOfSeats 
+	  * @return void   
+	  */
 	public void setProjectedNumberOfSeats(float projectedNumberOfSeats) {
-	// ...implementation goes here...
-		if(projectedNumberOfSeats >= 0)
+		//number of seats can not be negative
+		if(projectedNumberOfSeats >= 0) {
 		this.projectedNumberOfSeats = projectedNumberOfSeats;
+		}
+		else {
+			System.out.println("impossible value");
+		}
 	}
+	
 
+	/**
+	  * <p>Title: toString</p>
+	  * <p>Description: a sentence that says the name of the party and the percentage of votes and number of seats</p>
+	  * @return
+	  * @see java.lang.Object#toString()
+	  */
 	@Override
 	public String toString() {
-	// ...implementation goes here...
-		return getName()+" (" + (int)(getProjectedPercentageOfVotes()*100)+"% of votes, " + getProjectedNumberOfSeats() + " seats)";
+		return getName() + " (" + (int)(getProjectedPercentageOfVotes()*100) + "% of votes, " + getProjectedNumberOfSeats() + " seats)";
 	}
 
+	
+	/**
+	  * projectedPercentOfSeats
+	  * @Title: projectedPercentOfSeats
+	  * @Description: calculate the Percentage Of Seats
+	  * @param totalNumberOfSeats
+	  * @return double   
+	  */
 	public double projectedPercentOfSeats(int totalNumberOfSeats) {
-	// ...implementation goes here...
-		if(totalNumberOfSeats <= 0 )
+		if(totalNumberOfSeats <= 0)
 			return 0.0;
 		return (double)(getProjectedNumberOfSeats() / totalNumberOfSeats);
-	}
-
+	}	
+	
+	
+	/**
+	  * printStar
+	  * @Title: printStar
+	  * @Description: displaying a row of stars that represents the number of seats 
+	  * and a bar to indicate the number of seats needed for a majority in parliament. 
+	  * @param @param maxStars
+	  * @param @param starsNeededForMajority
+	  * @param @param index
+	  * @param @return    
+	  * @return String    
+	  */
 	public static String printStar(int maxStars, int starsNeededForMajority, double index) {
-	// ...implementation goes here...
-        String str="";
+	/**
+	  * this is the method that both textVisualizationBySeats and textVisualizationByVotes have in common
+	  * displaying a row of stars that represents the number of seats and a bar to indicate the number of seats needed for a majority in parliament.
+	  * maxStars is the maximum number of stars that a single line can contain
+	  * starsNeededForMajority is the number of stars that a party need to become majority
+	  */
+        String str= "";
 		int i;
-		for(i=1; i<=maxStars; i++) {
-			if(i<=index)
+		for(i = 1; i <= maxStars; i++){
+			if(i <= index)
 				str+="*";
 			else
 				str+=" ";
 			if(i == starsNeededForMajority)
+				//only print "|" when i reaches the number of Majority
 				str+="|";
 		}
 		return str;
 	}
-
+	
+	
+	/**
+	  * text Visualization By Seats
+	  * @Title: textVisualizationBySeats
+	  * @Description: gives a visual representation of the seats relevant to this party 
+	  * @param @param maxStars
+	  * @param @param starsNeededForMajority
+	  * @param @param numOfSeatsPerStar
+	  * @param @return   
+	  * @return String    
+	  */
 	public String textVisualizationBySeats(int maxStars, int starsNeededForMajority, double numOfSeatsPerStar) {
-	// ...implementation goes here...
+		//numOfSeatsPerStar is the number of seats that a star represent
 		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedNumberOfSeats() / numOfSeatsPerStar)) + " " + toString();
 	}
 
-	public String textVisualizationByVotes(int maxStars, int starsNeededForMajority, double percentOfVotesPerStar) {
-	// ...implementation goes here...
-		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedPercentageOfVotes()*100 / percentOfVotesPerStar)) + " " + toString();
-	}
+	
 	/**
- 	* ...method compareTo comment...
- 	* compareTo method is created for the Arrays.sort(Object) in Poll class
- 	*/
-	@Override
-	public int compareTo(Party o) {
-		if(this.getProjectedNumberOfSeats() != o.getProjectedNumberOfSeats()) {
-			return (int) (this.getProjectedNumberOfSeats() - o.getProjectedNumberOfSeats());
-		}return (int) ((this.getProjectedPercentageOfVotes() - o.getProjectedPercentageOfVotes()) * 100);
-
-	}
-
+	  * text Visualization By Votes
+	  * @Title: textVisualizationByVotes
+	  * @Description: gives a visual representation of the votes relevant to this party
+	  * @param @param maxStars
+	  * @param @param starsNeededForMajority
+	  * @param @param percentOfVotesPerStar
+	  * @return String    
+	  */
+	public String textVisualizationByVotes(int maxStars, int starsNeededForMajority, double percentOfVotesPerStar) {	
+		//percentOfVotesPerStar is the percentage of votes that a star represent
+		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedPercentageOfVotes()*100 / percentOfVotesPerStar)) + " " + toString();
+	} 
 }
