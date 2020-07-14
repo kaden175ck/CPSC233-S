@@ -182,19 +182,4 @@ public class Party implements Comparable<Party> {
 	public String textVisualizationByVotes(int maxStars, int starsNeededForMajority, double percentOfVotesPerStar) {	
 		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedPercentageOfVotes()*100 / percentOfVotesPerStar)) + " " + toString();
 	} 
-	
-	
-	/**
-	  * <p>Title: compareTo</p>
-	  * <p>Description: 请将这里的中文改成英文并简述下面compareto这段code的作用</p>
-	  * @param o
-	  * @return
-	  * @see java.lang.Comparable#compareTo(java.lang.Object)
-	  */
-	public int compareTo(Party o) {
-		if(this.getProjectedNumberOfSeats() != o.getProjectedNumberOfSeats()) {
-			return (int)(this.getProjectedNumberOfSeats() - o.getProjectedNumberOfSeats());
-		}
-		return (int)((this.getProjectedPercentageOfVotes() - o.getProjectedPercentageOfVotes())*100);
-	}
 }
