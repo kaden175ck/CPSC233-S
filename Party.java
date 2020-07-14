@@ -131,9 +131,9 @@ public class Party{
 	  * @Title: printStar
 	  * @Description: displaying a row of stars that represents the number of seats 
 	  * and a bar to indicate the number of seats needed for a majority in parliament. 
-	  * @param @param maxStars
-	  * @param @param starsNeededForMajority
-	  * @param @param index
+	  * @param @param maxStars   maxStars is the maximum number of stars that a single line can contain
+	  * @param @param starsNeededForMajority   it's the number of stars that a party need to become majority
+	  * @param @param index    
 	  * @param @return    
 	  * @return String    
 	  */
@@ -141,8 +141,6 @@ public class Party{
 	/**
 	  * this is the method that both textVisualizationBySeats and textVisualizationByVotes have in common
 	  * displaying a row of stars that represents the number of seats and a bar to indicate the number of seats needed for a majority in parliament.
-	  * maxStars is the maximum number of stars that a single line can contain
-	  * starsNeededForMajority is the number of stars that a party need to become majority
 	  */
         String str= "";
 		int i;
@@ -165,12 +163,11 @@ public class Party{
 	  * @Description: gives a visual representation of the seats relevant to this party 
 	  * @param @param maxStars
 	  * @param @param starsNeededForMajority
-	  * @param @param numOfSeatsPerStar
+	  * @param @param numOfSeatsPerStar     is the number of seats that a star represent
 	  * @param @return   
 	  * @return String    
 	  */
 	public String textVisualizationBySeats(int maxStars, int starsNeededForMajority, double numOfSeatsPerStar) {
-		//numOfSeatsPerStar is the number of seats that a star represent
 		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedNumberOfSeats() / numOfSeatsPerStar)) + " " + toString();
 	}
 
@@ -181,11 +178,10 @@ public class Party{
 	  * @Description: gives a visual representation of the votes relevant to this party
 	  * @param @param maxStars
 	  * @param @param starsNeededForMajority
-	  * @param @param percentOfVotesPerStar
+	  * @param @param percentOfVotesPerStar    is the percentage of votes that a star represent
 	  * @return String    
 	  */
 	public String textVisualizationByVotes(int maxStars, int starsNeededForMajority, double percentOfVotesPerStar) {	
-		//percentOfVotesPerStar is the percentage of votes that a star represent
 		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedPercentageOfVotes()*100 / percentOfVotesPerStar)) + " " + toString();
 	} 
 }
