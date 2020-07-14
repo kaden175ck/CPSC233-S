@@ -22,7 +22,6 @@ public class TextApplication {
 		
 	}
 	
-
 	public static void main(String[] args) {
 		TextApplication app = new TextApplication(null);
 		app.run();
