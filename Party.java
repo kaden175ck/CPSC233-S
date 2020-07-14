@@ -5,7 +5,7 @@
   * @date 2020 7.9 
   */
 public class Party{
-	private String name;//any string
+	private String name;
 	private float projectedNumberOfSeats;//the projected number of seats must be a non-negative value
 	private float projectedPercentageOfVotes;//the projected percentage of votes must be a value between 0 and 1 (both inclusive). 
 	
@@ -22,7 +22,7 @@ public class Party{
 
 	/**
 	  * <p>Title: Party</p>
-	  * <p>Description: Another Party constructor takes three parameters</p>
+	  * <p>Description: Another Party constructor that takes three parameters</p>
 	  * @param partyName
 	  * @param projectedNumberOfSeats
 	  * @param projectedPercentageOfVotes
@@ -34,8 +34,8 @@ public class Party{
 	}
 	
 		
-	/**
-	  * @Title: getProjectedPercentageOfVotes
+	/** @getProjectedPercentageOfVotes
+	  * getProjectedPercentageOfVotes
 	  * @Description: get projected percentage of votes
 	  * @return float   
 	  */
@@ -44,9 +44,8 @@ public class Party{
 	}
 	
 	
-	/** 
+	/** @Title: getName
 	  * getName
-	  * @Title: getName
 	  * @Description: get the name of the party
 	  * @return String  
 	  */
@@ -56,9 +55,8 @@ public class Party{
 	
 	
 	/**
-	  * setter method:setProjectedPercentageOfVotes
 	  * @Title: setProjectedPercentageOfVotes
-	  * @Description: check the validation of projected percentage of votes
+	  * @Description: set the projected percentage of votes and check its validation
 	  * @param projectedPercentageOfVotes  
 	  * @return void    
 	  */	
@@ -76,6 +74,7 @@ public class Party{
 	/**
 	  * getter method: get Projected Number Of Seats
 	  * @Title: getProjectedNumberOfSeats  
+	  * @Description: get Projected Number Of Seats
 	  * @return float   
 	  */
 	public float getProjectedNumberOfSeats() {
@@ -103,7 +102,7 @@ public class Party{
 
 	/**
 	  * <p>Title: toString</p>
-	  * <p>Description: a sentence that says the percentage of votes and number of seats</p>
+	  * <p>Description: a sentence that says the name of the party and the percentage of votes and number of seats</p>
 	  * @return
 	  * @see java.lang.Object#toString()
 	  */
@@ -116,7 +115,7 @@ public class Party{
 	/**
 	  * projectedPercentOfSeats
 	  * @Title: projectedPercentOfSeats
-	  * @Description: projected Percentage Of Seat
+	  * @Description: calculate the Percentage Of Seats
 	  * @param totalNumberOfSeats
 	  * @return double   
 	  */
@@ -139,12 +138,13 @@ public class Party{
 	  * @return String    
 	  */
 	public static String printStar(int maxStars, int starsNeededForMajority, double index) {
-		/**
-		 * this is the method that both 
-		 * maxStars is the maximum number of stars that a single line can contain
-		 * starsNeededForMajority is the number of stars that a party need to become majority
-		 */
-        String str= "";//create an empty string
+	/**
+	  * this is the method that both textVisualizationBySeats and textVisualizationByVotes have in common
+	  * displaying a row of stars that represents the number of seats and a bar to indicate the number of seats needed for a majority in parliament.
+	  * maxStars is the maximum number of stars that a single line can contain
+	  * starsNeededForMajority is the number of stars that a party need to become majority
+	  */
+        String str= "";
 		int i;
 		for(i = 1; i <= maxStars; i++){
 			if(i <= index)
@@ -162,7 +162,7 @@ public class Party{
 	/**
 	  * text Visualization By Seats
 	  * @Title: textVisualizationBySeats
-	  * @Description: gives a visual representation of the data relevant to this party and return a String
+	  * @Description: gives a visual representation of the seats relevant to this party 
 	  * @param @param maxStars
 	  * @param @param starsNeededForMajority
 	  * @param @param numOfSeatsPerStar
@@ -170,7 +170,7 @@ public class Party{
 	  * @return String    
 	  */
 	public String textVisualizationBySeats(int maxStars, int starsNeededForMajority, double numOfSeatsPerStar) {
-		//numOfSeatsPerStar is the the number of seats that a star represent
+		//numOfSeatsPerStar is the number of seats that a star represent
 		return printStar(maxStars, starsNeededForMajority, (int)Math.floor(getProjectedNumberOfSeats() / numOfSeatsPerStar)) + " " + toString();
 	}
 
@@ -178,7 +178,7 @@ public class Party{
 	/**
 	  * text Visualization By Votes
 	  * @Title: textVisualizationByVotes
-	  * @Description: gives a visual representation of the data relevant to this party
+	  * @Description: gives a visual representation of the votes relevant to this party
 	  * @param @param maxStars
 	  * @param @param starsNeededForMajority
 	  * @param @param percentOfVotesPerStar
