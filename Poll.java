@@ -2,7 +2,7 @@
   * ClassName: Poll
   * Description:  This class represents the data of poll.
   * @author Yuan Liu
-  * @since 2020 7.13
+  * @since 2020 7.14
   */
 import java.util.Arrays;
 import java.util.Comparator;
