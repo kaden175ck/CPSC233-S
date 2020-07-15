@@ -72,40 +72,55 @@ public class PollList {
 
 
 	public Poll getAggregatePoll(String[] partyNames){
+		float totalSeats = 0;
+		//float totalPercent = 0;
 		//make a new aggregate poll named "Aggregate"
-		Poll Aggregate = new Poll("Aggregate",partyNames.length);
+		Poll Aggregate = new Poll("Aggregate", partyNames.length);
 		for (int index = 0; index < partyNames.length; index++) {
 			Aggregate.addParty(getAveragePartyData(partyNames[index]));
 		}
-			return adjustPollToMaximum(Aggregate);
+		System.out.println("Hello");
 
-
-
+		for (int index = 0; index < Aggregate.getNumberOfParties(); index++) {
+			float seats = Aggregate.getParty(partyNames[index]).getProjectedNumberOfSeats();
+			System.out.println(seats);
+			totalSeats = totalSeats + seats;
+			System.out.println(totalSeats);
+		}
+		if (totalSeats > this.numOfSeats) {
+			float proportion = this.numOfSeats/totalSeats;
+			System.out.println(proportion);
+			for (int index = 0; index < Aggregate.getNumberOfParties(); index++) {
+			Aggregate.getParty(partyNames[index]).setProjectedNumberOfSeats(Aggregate.getParty(partyNames[index]).getProjectedNumberOfSeats()*proportion);
+			System.out.println(Aggregate.getParty(partyNames[index]).getProjectedNumberOfSeats());
+		}
+		}
+		return Aggregate;
 	}
 
 	public Party getAveragePartyData(String partyName) {
 		Party party = new Party(partyName);
 		//expected number of seats
 
-		int numberSeats = 0;
-		double percentageOfVotesTotal = 0;
-		int length = 0;
+		float numberSeats = 0;
+		float percentageOfVotesTotal = 0;
+		float length = 0;
 		for (int index = 0;index < polls.length ;index++) {
 			//inside polls getParty from party class --> argument party name
 			// how to get the projected number of seats to the party created
 			Party partyObject = polls[index].getParty(partyName);
 			if (partyObject != null) {
-			int projectedNumberSeats = (int)(partyObject.getProjectedNumberOfSeats());
+			float projectedNumberSeats = partyObject.getProjectedNumberOfSeats();
 			numberSeats = numberSeats + projectedNumberSeats;
-			double percentageOfVotes = partyObject.getProjectedPercentageOfVotes();
+			float percentageOfVotes = partyObject.getProjectedPercentageOfVotes();
 			percentageOfVotesTotal = percentageOfVotesTotal + percentageOfVotes;
 			length++;
 
 		}
 		}
 
-		float avgNumberSeats = (float)numberSeats/length;
-		float avgPercentageOfVotes = (float)percentageOfVotesTotal/length;
+		float avgNumberSeats = numberSeats/length;
+		float avgPercentageOfVotes = percentageOfVotesTotal/length;
 
 
 		// create new party object
@@ -114,18 +129,26 @@ public class PollList {
 		return party;
 	}
 
-	public Poll adjustPollToMaximums(Poll aPoll) {
+	/*public Poll adjustPollToMaximums(Poll aPoll) {
 		// test if the total number of possible seats is different
 			//from the actual number of seats
 			float totalSeats = 0;
 			float totalPercent = 0;
 		for (int index = 0; index < aPoll.getNumberOfParties(); index++) {
-			totalSeats = totalSeats + aPoll[index].getProjectedNumberOfSeats();
+			totalSeats = totalSeats + ((aPoll.getParty(aPoll.)).getProjectedNumberOfSeats());
 
 		}
 		return aPoll;
-	}
+	}*/
+	/*public Poll adjustPollToMaximums(Poll aPoll) {
+		Poll aggregateCorrected  = new Poll(aPoll.getPollName(), aPoll.getNumberOfParties());
+		for(Party aParty: aPoll.getPartiesSortedBySeats()) {
+			float actualNumberOfSeats = aParty.getProjectedNumberOfSeats();
 
+		}
+		return aggregateCorrected;
+
+	}*/
 
 	@Override
 	public String toString() {
