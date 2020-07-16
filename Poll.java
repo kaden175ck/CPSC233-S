@@ -148,7 +148,7 @@ class sortPartiesComparator implements Comparator<Party> {
 	/**
 	  * Title: compare
 	  * Description: This is a override to compare two party objects.
-	  * @return int
+	  * @return A positive integer or a negative integer which will be used in comparator.
 	  */
 	@Override
 	public int compare(Party o1, Party o2) {
