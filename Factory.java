@@ -67,9 +67,9 @@ public class Factory {
 		float partyPercent = (rand.nextFloat());
 		float projectedNumberOfVotes = ((float)(rand.nextInt((int)maxPercent + 1))/100);
 		float seatPercent = (seats/totalAvailableSeats);
-		float difference =(seatPercent-partyPercent) ;
+		float difference =(seatPercent-partyPercent); 	//calculating difference of percents
 		//if seatPercent and partyPercent differ by at most 5% create the randomParty object
-		if ((Math.abs(difference)) / ((partyPercent+seatPercent) / 2.0) <= 5 ) {
+		if ((Math.abs(difference)) <= 5 ) {
 			return new Party(partyName, seats, projectedNumberOfVotes);
 		}
 		else {
