@@ -73,7 +73,7 @@ public class PollList {
 
 	public Poll getAggregatePoll(String[] partyNames){
 		float totalSeats = 0;
-		//float totalPercent = 0;
+		float totalPercent = 0;
 		//make a new aggregate poll named "Aggregate"
 		Poll Aggregate = new Poll("Aggregate", partyNames.length);
 		for (int index = 0; index < partyNames.length; index++) {
@@ -83,17 +83,25 @@ public class PollList {
 
 		for (int index = 0; index < Aggregate.getNumberOfParties(); index++) {
 			float seats = Aggregate.getParty(partyNames[index]).getProjectedNumberOfSeats();
-			System.out.println(seats);
+			float percent = Aggregate.getParty(partyNames[index]).getProjectedPercentageOfVotes();
+			System.out.println(seats + "     seats");
 			totalSeats = totalSeats + seats;
-			System.out.println(totalSeats);
+			totalPercent = totalPercent + percent;
+			System.out.println(totalSeats + "    total number of seats");
 		}
 		if (totalSeats > this.numOfSeats) {
 			float proportion = this.numOfSeats/totalSeats;
-			System.out.println(proportion);
+			System.out.println(proportion + "     proportion");
 			for (int index = 0; index < Aggregate.getNumberOfParties(); index++) {
 			Aggregate.getParty(partyNames[index]).setProjectedNumberOfSeats(Aggregate.getParty(partyNames[index]).getProjectedNumberOfSeats()*proportion);
 			System.out.println(Aggregate.getParty(partyNames[index]).getProjectedNumberOfSeats());
 		}
+		}
+		if (totalPercent > 1) {
+			float proportionPercent = (float)1.0/totalPercent;
+			for (int index =0; index <Aggregate.getNumberOfParties(); index++) {
+				Aggregate.getParty(partyNames[index]).setProjectedPercentageOfVotes(Aggregate.getParty(partyNames[index]).getProjectedPercentageOfVotes()*proportionPercent);
+			}
 		}
 		return Aggregate;
 	}
@@ -129,26 +137,6 @@ public class PollList {
 		return party;
 	}
 
-	/*public Poll adjustPollToMaximums(Poll aPoll) {
-		// test if the total number of possible seats is different
-			//from the actual number of seats
-			float totalSeats = 0;
-			float totalPercent = 0;
-		for (int index = 0; index < aPoll.getNumberOfParties(); index++) {
-			totalSeats = totalSeats + ((aPoll.getParty(aPoll.)).getProjectedNumberOfSeats());
-
-		}
-		return aPoll;
-	}*/
-	/*public Poll adjustPollToMaximums(Poll aPoll) {
-		Poll aggregateCorrected  = new Poll(aPoll.getPollName(), aPoll.getNumberOfParties());
-		for(Party aParty: aPoll.getPartiesSortedBySeats()) {
-			float actualNumberOfSeats = aParty.getProjectedNumberOfSeats();
-
-		}
-		return aggregateCorrected;
-
-	}*/
 
 	@Override
 	public String toString() {
