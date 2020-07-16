@@ -81,10 +81,10 @@ public class TextApplication {
 		int numPolls = userInput.nextInt();
 		userInput.nextLine();
 		
-		System.out.print  ("\nWould you like to create a random set of polls? [y/n] ");
+		System.out.print  ("\nWould you like to create a random set of polls? yes or no ");
 		String randomPoll = userInput.nextLine();
 
-		if (randomPoll == ("y")) {
+		if (randomPoll == ("yes")) {
 			polls = new PollList(numPolls, seats);
 			int counter = 0;
 			while (counter < numPolls) {	
