@@ -61,12 +61,13 @@ public class Factory {
 
 		//generating seats and party percent using randomizer based on
 		//bounds - maximumSeats and maximumPercent parameters passed in method
+		int totalAvailableSeats = numOfSeats;
+		float maxPercent = maximumPercent;
 		int seats = rand.nextInt(maximumSeats + 1);
 		float partyPercent = (rand.nextFloat());
-		int projectedNumberOfVotes = (rand.nextInt(maximumPercent + 1));
-		float seatPercent = (seats/(maximumSeats+1));
+		float projectedNumberOfVotes = ((float)(rand.nextInt((int)maxPercent + 1))/100);
+		float seatPercent = (seats/totalAvailableSeats);
 		float difference =(seatPercent-partyPercent) ;
-
 		//if seatPercent and partyPercent differ by at most 5% create the randomParty object
 		if ((Math.abs(difference)) / ((partyPercent+seatPercent) / 2.0) <= 5 ) {
 			return new Party(partyName, seats, projectedNumberOfVotes);
