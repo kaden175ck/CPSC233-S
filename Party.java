@@ -1,7 +1,7 @@
 /**
-  * @ClassName: Party
-  * @Description: This class represents the data of a single political party by using stars and bars.
-  * @author Haoyang Shi
+  * ClassName: Party
+  * Description: This class represents the data of a single political party by using stars and bars.
+  * @author Haoyang Shi 30105296
   * @date 2020 7.9 
   */
 public class Party{
@@ -11,8 +11,8 @@ public class Party{
 	
 	
 	/**
-	  * <p>Title: Party</p>
-	  * <p>Description: Party constructor that takes the name of the party as argument</p>
+	  * Title: Party
+	  * @Description: Party constructor that takes the name of the party as argument
 	  * @param partyName
 	  */
 	public Party(String partyName) {
@@ -21,8 +21,8 @@ public class Party{
 	
 
 	/**
-	  * <p>Title: Party</p>
-	  * <p>Description: Another Party constructor that takes three parameters</p>
+	  * Title: Party
+	  * Description: Another Party constructor that takes three parameters
 	  * @param partyName
 	  * @param projectedNumberOfSeats
 	  * @param projectedPercentageOfVotes
@@ -34,9 +34,9 @@ public class Party{
 	}
 	
 		
-	/** @getProjectedPercentageOfVotes
-	  * getProjectedPercentageOfVotes
-	  * @Description: get projected percentage of votes
+	/** 
+	  * Title: getProjectedPercentageOfVotes
+	  * Description: get projected percentage of votes
 	  * @return float   
 	  */
 	public float getProjectedPercentageOfVotes() {
@@ -44,9 +44,9 @@ public class Party{
 	}
 	
 	
-	/** @Title: getName
-	  * getName
-	  * @Description: get the name of the party
+	/** 
+	  * Title: getName
+	  * Description: get the name of the party
 	  * @return String  
 	  */
 	public String getName() {
@@ -55,8 +55,8 @@ public class Party{
 	
 	
 	/**
-	  * @Title: setProjectedPercentageOfVotes
-	  * @Description: set the projected percentage of votes and check its validation
+	  * Title: setProjectedPercentageOfVotes
+	  * Description: set the projected percentage of votes and check its validation
 	  * @param projectedPercentageOfVotes  
 	  * @return void    
 	  */	
@@ -72,9 +72,8 @@ public class Party{
 	
 
 	/**
-	  * getter method: get Projected Number Of Seats
-	  * @Title: getProjectedNumberOfSeats  
-	  * @Description: get Projected Number Of Seats
+	  * Title: getProjectedNumberOfSeats  
+	  * Description: get Projected Number Of Seats
 	  * @return float   
 	  */
 	public float getProjectedNumberOfSeats() {
@@ -83,9 +82,8 @@ public class Party{
 	
 
 	/**
-	  * setter method: set Projected Number Of Seats
-	  * @Title: setProjectedNumberOfSeats
-	  * @Description: check the validation of projected Number Of Seats
+	  * Title: setProjectedNumberOfSeats
+	  * Description: check the validation of projected Number Of Seats
 	  * @param projectedNumberOfSeats 
 	  * @return void   
 	  */
@@ -101,9 +99,9 @@ public class Party{
 	
 
 	/**
-	  * <p>Title: toString</p>
-	  * <p>Description: a sentence that says the name of the party and the percentage of votes and number of seats</p>
-	  * @return
+	  * Title: toString
+	  * Description: a sentence that says the name of the party and the percentage of votes and number of seats
+	  * @return String
 	  * @see java.lang.Object#toString()
 	  */
 	@Override
@@ -113,9 +111,8 @@ public class Party{
 
 	
 	/**
-	  * projectedPercentOfSeats
-	  * @Title: projectedPercentOfSeats
-	  * @Description: calculate the Percentage Of Seats
+	  * Title: projectedPercentOfSeats
+	  * Description: calculate the Percentage Of Seats
 	  * @param totalNumberOfSeats
 	  * @return double   
 	  */
@@ -127,14 +124,12 @@ public class Party{
 	
 	
 	/**
-	  * printStar
-	  * @Title: printStar
-	  * @Description: displaying a row of stars that represents the number of seats 
+	  * Title: printStar
+	  * Description: displaying a row of stars that represents the number of seats 
 	  * and a bar to indicate the number of seats needed for a majority in parliament. 
-	  * @param @param maxStars   maxStars is the maximum number of stars that a single line can contain
-	  * @param @param starsNeededForMajority   it's the number of stars that a party need to become majority
-	  * @param @param index    
-	  * @param @return    
+	  * @param maxStars                  maxStars is the maximum number of stars that a single line can contain
+	  * @param starsNeededForMajority    starsNeededForMajority is the number of stars that a party need to become majority
+	  * @param index      
 	  * @return String    
 	  */
 	public static String printStar(int maxStars, int starsNeededForMajority, double index) {
@@ -158,13 +153,11 @@ public class Party{
 	
 	
 	/**
-	  * text Visualization By Seats
-	  * @Title: textVisualizationBySeats
-	  * @Description: gives a visual representation of the seats relevant to this party 
-	  * @param @param maxStars
-	  * @param @param starsNeededForMajority
-	  * @param @param numOfSeatsPerStar     is the number of seats that a star represent
-	  * @param @return   
+	  * Title: textVisualizationBySeats
+	  * Description: gives a visual representation of the seats relevant to this party 
+	  * @param maxStars
+	  * @param starsNeededForMajority
+	  * @param numOfSeatsPerStar          numOfSeatsPerStar is the number of seats that a star represent   
 	  * @return String    
 	  */
 	public String textVisualizationBySeats(int maxStars, int starsNeededForMajority, double numOfSeatsPerStar) {
@@ -173,12 +166,11 @@ public class Party{
 
 	
 	/**
-	  * text Visualization By Votes
-	  * @Title: textVisualizationByVotes
-	  * @Description: gives a visual representation of the votes relevant to this party
-	  * @param @param maxStars
-	  * @param @param starsNeededForMajority
-	  * @param @param percentOfVotesPerStar    is the percentage of votes that a star represent
+	  * Title: textVisualizationByVotes
+	  * Description: gives a visual representation of the votes relevant to this party
+	  * @param maxStars
+	  * @param starsNeededForMajority
+	  * @param percentOfVotesPerStar       percentOfVotesPerStar is the percentage of votes that a star represent
 	  * @return String    
 	  */
 	public String textVisualizationByVotes(int maxStars, int starsNeededForMajority, double percentOfVotesPerStar) {	

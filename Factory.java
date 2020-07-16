@@ -1,26 +1,23 @@
 /**
- * Team F Factory Class for Assignment 1
+ * Class Name: Factory
+ * Description: This class creates random parties, polls, and pollLists randomly
  * @author kenneth Liu 30066722
+ * @date 2020 7.9
  */
 
-//import random class
-import java.util.Random;
-/**
- * Factory class creates Parties, Polls and PollLists either randomly or by user input
- *
- */
+//import java util classes
+import java.util.*;
+
 public class Factory {
 	//instance variables
+	private int numOfSeats;		// number of seats available in the election
+	private String[] partyNames = {"BQ","CPC","Green","Liberal","NDP","PPC","Rhinoceros"};	//names of all the parties participating in the election
 
-	// number of seats available in the election
-	private int numOfSeats;
-	//names of all the parties participating in the election
-	private String[] partyNames = {"BQ","CPC","Green","Liberal","NDP","PPC","Rhinoceros"};
 
 	/**
-	 * Constructor for Factory class
-	 * @param numOfSeats - number of seats in the election
-	 *
+	 * Title: Factory
+	 * Description: Constructor for Factory class that takes the number of seats in the election
+	 * @param numOfSeats - number of seats in the election hence must be a positive number
 	 */
 	public Factory(int numOfSeats) {
 		if(numOfSeats >=1) { 		//num of seats must be a positive number
@@ -29,9 +26,10 @@ public class Factory {
 	}
 
 	/**
-	 * setter method for party names
-	 * @param names - names for parties
-	 * sets Factory object party name to argument
+	 * Title: setPartyNames
+	 * Description: method to set partyNames array
+	 * @param names array of type String - must not be null
+	 * @return void
 	 */
 	public void setPartyNames(String[] names) {
 		if(names != null) {
@@ -40,96 +38,95 @@ public class Factory {
 	}
 
 	/**
-	 * getter method for partyNames
-	 * @return partyNames
+	 * Title: getPartyNames
+	 * Description: method that retrieves the partyNames array
+	 * @return partyNames array of type String
 	 */
 	public String[] getPartyNames() {
 		return partyNames;
 	}
 
 	/**
-	 * method to create a random party, seats and percent will be randomized based on the parameters
-	 * party object will only return if seat percent and vote percent differ by at most 5%
+	 * Title: createRandomParty
+	 * Description: method to create a random party, seats and percent will be randomized based
+	 * on the parameters party object will only return if seat percent and vote percent differ by at most 5%
 	 * @param partyName - name of the party created
 	 * @param maximumSeats - max seats the party can have
 	 * @param maximumPercent - max percent of votes the party can have
 	 * @return new party object with parameters of partyName, seats and percent based on maximum seats and percent
 	 */
-	public Party createRandomParty(String partyName, int maximumSeats, int maximumPercent) {
+	public static Party createRandomParty(String partyName, int maximumSeats, int maximumPercent) {
 
 		Random rand = new Random(); 	//creating rand object from random class
 
-		/*
-		 * generating seats and party percent using randomizer based on
-		 * bounds - maximumSeats and maximumPercent parameters passed in method
-		 */
-		int actualMaxSeats = maximumSeats + 1;		//actualMaxSeats and actualMaxPercentfor
-		//random int generator to be inclusive
-		int actualMaxPercent = maximumPercent + 1;
-		int seats = rand.nextInt(actualMaxSeats);
-		float partyPercent = rand.nextInt(actualMaxPercent)/100;
-		float seatPercent = seats/actualMaxSeats;		//calculating seatpercent
+		//generating seats and party percent using randomizer based on
+		//bounds - maximumSeats and maximumPercent parameters passed in method
+		int seats = rand.nextInt(maximumSeats + 1);
+		float partyPercent = (rand.nextFloat());
+		int projectedNumberOfVotes = (rand.nextInt(maximumPercent + 1));
+		float seatPercent = (seats/(maximumSeats+1));
+		float difference =(seatPercent-partyPercent) ;
 
-		//if seatPercent and partyPercent differ by at most 5% (0.05) create the randomParty object
-		if ((seatPercent-partyPercent) <= 0.05) {
-			return new Party(partyName, seats, partyPercent);
+		//if seatPercent and partyPercent differ by at most 5% create the randomParty object
+		if ((Math.abs(difference)) / ((partyPercent+seatPercent) / 2.0) <= 5 ) {
+			return new Party(partyName, seats, projectedNumberOfVotes);
 		}
-		return null;		//otherwise return null
+		else {
+			return null;		//otherwise return null
+		}
 	}
 
 	/**
-	 * Method that creates a random poll object and returns it
+	 * Title: createRandomPoll
+	 * Description: Method that creates a random poll object and returns it
 	 * @param name - String that is the name of the poll
 	 * @return the random poll object that was generated
 	 */
-	public Poll createRandomPoll(String name) {
+	public  Poll createRandomPoll(String name) {
 		Poll poll = new Poll(name, partyNames.length);		//creating new poll object
 		String[] copy = getPartyNames();					//creating new array for partyNames
 		Random rand = new Random();
-		int maxPercent = 100;
+		float maxPercent = 100;
 		int numberOfSeats = this.numOfSeats;
-
-		for (String partyName : copy) {			//iterating through copy array
-			Party p = createRandomParty(partyName,numberOfSeats, maxPercent);
-			poll.addParty(p);		//adds party object p created from create random Party to poll
+		for (int i = 0; i < partyNames.length; i++) {	//iterating through partyNames array
 			/*
-			 * for loop that scrambles the copied partyNames array
+			 * for loop that scrambles that randomizes partyNames array
 			 * method from:
 			 * https://www.journaldev.com/32661/shuffle-array-java
 			 */
-			for(int i = 0; i <copy.length; i++) {
-				int randomIndex = rand.nextInt(copy.length);
+			for(int j = 0; j < copy.length; j++) {
+				int randomIndex = rand.nextInt((copy.length));
 				String randomPartyName = copy[randomIndex];
 				copy[randomIndex] = copy[i];
 				copy[i] = randomPartyName;
 			}
+			System.out.println(Arrays.toString(copy));
+			Party p = createRandomParty(copy[i],numberOfSeats, (int)maxPercent);
+			poll.addParty(p);		//adds party object p created from create random Party to poll
 			//updating number of maximum seats and percent each party can have
-			//done by subtracting initial number of seats by the amount party has
-			numberOfSeats -= (int)p.getProjectedNumberOfSeats();
-			maxPercent -=(int) p.getProjectedPercentageOfVotes();
-		}
+			numberOfSeats -= p.getProjectedNumberOfSeats();
+			maxPercent -= p.getProjectedPercentageOfVotes();
 
+		}
 		return poll;
 	}
 
 	/**
-	 * Creating a random poll list and returning said list
+	 * Title: createRandomPollList
+	 * Description: Creating a random poll list and returning said list
 	 * @param numOfPolls - number of polls conducted
-	 * @return poll list
+	 * @return poll list that was randomly generated
 	 */
 	public PollList createRandomPollList(int numOfPolls) {
-		PollList list = new PollList(numOfPolls,numOfSeats);
+		PollList list = new PollList(numOfPolls,numOfSeats);		//creating new pollList object
 		for (int counter = 0; counter < numOfPolls; counter++) {
-			list.addPoll(createRandomPoll("Poll" + counter));
+			list.addPoll(createRandomPoll("Poll" + counter));		//adding polls using createRandomPoll method to list object
 		}
 		return list;
 	}
-	//bonus
-	public PollList promptForPollList(int numOfPolls) {
-		return createRandomPollList(numOfPolls);
-	}
-	public static void main(String[] args) {
-
-	}
 }
+
+
+
+
 
