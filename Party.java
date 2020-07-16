@@ -12,7 +12,7 @@ public class Party{
 	
 	/**
 	  * Title: Party
-	  * @Description: Party constructor that takes the name of the party as argument
+	  * Description: Party constructor that takes the name of the party as argument
 	  * @param partyName
 	  */
 	public Party(String partyName) {
