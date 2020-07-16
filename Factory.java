@@ -55,7 +55,7 @@ public class Factory {
 	 * @param maximumPercent - max percent of votes the party can have
 	 * @return new party object with parameters of partyName, seats and percent based on maximum seats and percent
 	 */
-	public static Party createRandomParty(String partyName, int maximumSeats, int maximumPercent) {
+	public Party createRandomParty(String partyName, int maximumSeats, int maximumPercent) {
 
 		Random rand = new Random(); 	//creating rand object from random class
 
