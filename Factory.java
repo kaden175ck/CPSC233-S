@@ -88,29 +88,26 @@ public class Factory {
 		Random rand = new Random();
 		float maxPercent = 100;
 		int numberOfSeats = this.numOfSeats;
-		for (int i = 0; i < partyNames.length; i++) {	//iterating through partyNames array
-			/*
-			 * for loop that scrambles that randomizes partyNames array
-			 * method from:
-			 * https://www.journaldev.com/32661/shuffle-array-java
-			 */
+
+		int i = 0;
+		for (i = 0; i < partyNames.length; i++) {	//iterating through partyNames array
 			for(int j = 0; j < copy.length; j++) {
 				int randomIndex = rand.nextInt((copy.length));
 				String randomPartyName = copy[randomIndex];
-				copy[randomIndex] = copy[i];
-				copy[i] = randomPartyName;
+				copy[randomIndex] = copy[j];
+				copy[j] = randomPartyName;
 			}
-			System.out.println(Arrays.toString(copy));
 			Party p = createRandomParty(copy[i],numberOfSeats, (int)maxPercent);
-			poll.addParty(p);		//adds party object p created from create random Party to poll
 			//updating number of maximum seats and percent each party can have
 			numberOfSeats -= p.getProjectedNumberOfSeats();
 			maxPercent -= p.getProjectedPercentageOfVotes();
+			poll.addParty(p);		//adds party object p created from create random Party to poll
 
 		}
+
+
 		return poll;
 	}
-
 	/**
 	 * Title: createRandomPollList
 	 * Description: Creating a random poll list and returning said list
@@ -123,6 +120,10 @@ public class Factory {
 			list.addPoll(createRandomPoll("Poll" + counter));		//adding polls using createRandomPoll method to list object
 		}
 		return list;
+	}
+	//bonus
+	public PollList promptForPollList(int numOfPolls) {
+		return createRandomPollList(numOfPolls);
 	}
 }
 
