@@ -5,7 +5,6 @@
   * @date 2020 7.9 
   */
 public class Party{
-	//declare instance Vars
 	private String name;
 	private float projectedNumberOfSeats;//the projected number of seats must be a non-negative value
 	private float projectedPercentageOfVotes;//the projected percentage of votes must be a value between 0 and 1 (both inclusive). 
