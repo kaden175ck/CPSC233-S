@@ -1,7 +1,7 @@
 /**
   * @ClassName: Party
   * @Description:  represents a single political party
-  * @author Haoyang Shi
+  * @author Haoyang Shi 30105296
   * @date 2020 7.9 
   */
 public class Party {
