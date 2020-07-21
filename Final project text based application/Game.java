@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 public class Game {
 	private HumanPlayer human;
-	private static GameConfiguration config;
+	private  GameConfiguration config;
 	private AI computer; //AI class
-	private static Scanner input = new Scanner(System.in);
+	private Scanner input = new Scanner(System.in);
 	private int gameMode;
 
 	public void setup() {
