@@ -8,22 +8,22 @@ import java.util.Scanner;
 public class HumanPlayer{
 	
 	private String token; //will implement later 
-	private static Scanner input = new Scanner(System.in);
-	private static char board[][] = new char[15][15];//will probably get rid of this, we need to make a board class
+	private Scanner input = new Scanner(System.in);
+	private char board[][] = new char[15][15];//will probably get rid of this, we need to make a board class
 	
 	
-	private static int row;
-	private static int col;
+	private int row;
+	private int col;
 	
-	private static int userRow;
-	private static int userCol;
+	private int userRow;
+	private int userCol;
 	
 	/**
 	 * Title: getRow
 	 * Description: Prompts user for row 
 	 * @return value of row
 	 */
-	public static int getRow() {
+	public int getRow() {
 		System.out.println("Enter row where you want piece to go: ");
 		row = input.nextInt();
 		return row;
@@ -33,7 +33,7 @@ public class HumanPlayer{
 	 * Description: Prompts user for column 
 	 * @return value of column
 	 */
-	public static int getCol() {
+	public int getCol() {
 		System.out.println("Enter column where you want piece to go: ");
 		col = input.nextInt();
 		return col;
@@ -45,12 +45,12 @@ public class HumanPlayer{
 	 * If valid place token onto coordinates
 	 * if not show errors and prompt user again
 	 */
-	public static void placeToken() {
+	public void placeToken() {
 		try { 								//try statement for placing piece
 			if(board[row][col] ==0) {
 			userCol = col;
 			userRow = row;
-			board[row][col] = 'X'; 
+			board[row][col] = token; 		//import from token class
 			input.close();
 			System.out.println("Putting piece at coordinates: (" + userRow +"," + userCol +")");
 			}
@@ -69,24 +69,12 @@ public class HumanPlayer{
 			}
 		}
 	
-	public static void printBoard() { //printing board
-		for(int i=0;i<15;i++) {
-			System.out.println();	
-			for(int j=0;j<15;j++) {
-				System.out.print(board[i][j] +"O");
-			}
-		}
-		System.out.println();
-	}
-	public static void play() { //this method we will call when it's players turn
-		printBoard();
+	
+	public void play() { //this method we will call when it's players turn
 		getRow();
 		getCol();
 		placeToken();
-		printBoard();
 	}
 	
-	public static void main(String[] args) {
-		play();
-	}
+	
 }
