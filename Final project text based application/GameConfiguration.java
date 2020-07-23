@@ -79,13 +79,13 @@ public class GameConfiguration{
          boolean checkResult = false;
          
          //upright
-         for(int i=1;(i<5) && (color==aBoard.getValue(row-i, col+1));i++) {
+         for(int i=1;(i<5) && (color==aBoard.getValue(row-i, col+i));i++) {
              if(((row-i)>=0) && (col+i<=15)) {
                  count++;
              }
          }
          //downleft
-         for(int i=1;(i<5) && (color==aBoard.getValue(row+i, col-1));i++) {
+         for(int i=1;(i<5) && (color==aBoard.getValue(row+i, col-i));i++) {
              if(((row+i)<=15) && (row-i>=0)) {
                   count++;
              } 
@@ -106,13 +106,13 @@ public class GameConfiguration{
         boolean checkResult = false;
         
         //upleft
-        for(int i=1;(i<5) && (color==aBoard.getValue(row-i, col-1));i++) {
+        for(int i=1;(i<5) && (color==aBoard.getValue(row-i, col-i));i++) {
             if(((row-i)>=0) && (col-i>=0)) {
                 count++;
             }
         }
         //downright
-        for(int i=1;(i<5) && (color==aBoard.getValue(row+i, col+1));i++) {
+        for(int i=1;(i<5) && (color==aBoard.getValue(row+i, col+i));i++) {
             if(((row+i)<=15) && (col+i<=15)) {
                  count++;
             } 
