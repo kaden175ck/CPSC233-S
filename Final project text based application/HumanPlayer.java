@@ -1,22 +1,19 @@
-/**
- * Gomoku iteration 1 
- * Title: Human Player
- * Description: Player turn for Gomoku game 
- * Prompts user to get coordinates of piece and places piece on board if valid move.
- */
 import java.util.Scanner;
+
 public class HumanPlayer{
 	
-	private String token; //will implement later 
+	private char token; //will implement later 
 	private Scanner input = new Scanner(System.in);
-	private char board[][] = new char[15][15];//will probably get rid of this, we need to make a board class
+	//private char board[][] = new char[15][15];//will probably get rid of this, we need to make a board class
 	
 	
 	private int row;
 	private int col;
+	private int color;
 	
 	private int userRow;
 	private int userCol;
+	private int userColor;
 	
 	/**
 	 * Title: getRow
@@ -39,18 +36,30 @@ public class HumanPlayer{
 		return col;
 	}
 	
+	public int getColor() {
+		System.out.println("Pick the color of your pieces. 1: Black, 2: White");
+		color = input.nextInt();
+		if(color ==1 || color == 2)
+			userColor = color;
+		return userColor;
+	}
+	
+
+	
 	/**
 	 * Title: placeToken
 	 * Description: Method that tests if coordinates are valid, (coordinate is not occupied and within range)
 	 * If valid place token onto coordinates
 	 * if not show errors and prompt user again
 	 */
-	public void placeToken() {
+	public void placeToken(Board aBoard) {
 		try { 								//try statement for placing piece
-			if(board[row][col] ==0) {
+			char value = aBoard.getValue(row, col);
+			if(value == 0) {
 			userCol = col;
 			userRow = row;
-			board[row][col] = token; 		//import from token class
+			
+			value = token; 		//import from token class
 			input.close();
 			System.out.println("Putting piece at coordinates: (" + userRow +"," + userCol +")");
 			}
@@ -58,23 +67,24 @@ public class HumanPlayer{
 				System.out.println("Invalid move: coordinates already occupied");
 				getRow();
 				getCol();
-				placeToken();
+				placeToken(aBoard);
 			}
 		} 
 		catch(ArrayIndexOutOfBoundsException E) { //if user input is beyond board, prompt again
 			System.out.println("invalid input, enter a number between 0 and 15");
 			getRow();
 			getCol();
-			placeToken();
+			placeToken(aBoard);
 			}
 		}
 	
 	
-	public void play() { //this method we will call when it's players turn
+	public void play(Board aBoard) { //this method we will call when it's players turn
 		getRow();
 		getCol();
-		placeToken();
+		placeToken(aBoard);
 	}
 	
 	
 }
+
