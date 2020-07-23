@@ -1,3 +1,11 @@
+/**
+  *@author Haoyang Shi  30105296
+  *@Description:This program suppose to simulate an AI player.
+  *I have already test this program on other people's code, and it can work properly.
+  *The level of this AI would be about middle.
+  *I will keep improving this AI.
+  */
+
 import java.util.*;
 public class Ai {
 	private HashMap<String,Integer> map1=new HashMap<>();
