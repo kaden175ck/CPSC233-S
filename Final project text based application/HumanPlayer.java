@@ -52,8 +52,16 @@ public class HumanPlayer{
 		if (aColor == 2) userColor = 1;
 	}
 	
-
+	public int getRow() {
+		return userRow;
+	}
 	
+	public int getCol() {
+		return userCol;
+	}
+	
+	
+
 	/**
 	 * Title: placeToken
 	 * Description: Method that tests if coordinates are valid, (coordinate is not occupied and within range)
@@ -68,7 +76,7 @@ public class HumanPlayer{
 			userRow = row;
 			
 			value = token; 		//import from token class
-			input.close();
+			//input.close();
 			}
 			else {							//if place in board is occupied, show error
 				System.out.println("Invalid move: coordinates already occupied");
