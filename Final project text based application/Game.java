@@ -1,5 +1,5 @@
 
-public class Game {	
+public class Game extends GameConfiguration {	
 	public static void main(String[] args) {
 		//Draw board
 		Board aBoard = new Board();
@@ -9,12 +9,21 @@ public class Game {
 		HumanPlayer aHuman1 = new HumanPlayer();
 		aHuman1.setColor();
 		
-		HumanPlayer aHuman2 = new HumanPlayer();
-		aHuman2.setColor();
+		//HumanPlayer aHuman2 = new HumanPlayer();
+		//aHuman2.setColor();
 		
-		aHuman1.play(aBoard);
+		 int counter = 0;
 		
-		aHuman2.play(aBoard);
+		 while((counter<=112)) {
+			 aHuman1.play(aBoard);
+			 
+			 if(checkWon(aHuman1.getRow(), aHuman1.getCol(), aBoard) == true) {
+				System.out.println("You win!");
+				}
+			 
+			 counter++;	
+		}
+		//aHuman2.play(aBoard);
 		
 		
 	}
