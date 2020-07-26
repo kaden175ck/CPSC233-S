@@ -68,33 +68,33 @@ public class Ai {
 		 System.out.println(mark("22220"));
 	 }*/
 	 
-    public static int mark(String str)
+    public static int mark(String str)//give different pattern a value. 
     {
     	int black=0,white=0,mark=0;
     	
     	for(int i=0;i<str.length();i++)
     	{
-    		if(str.charAt(i)=='1')
+    		if(str.charAt(i)=='1')//count the number of times black chess appeared
     			black++;
-    		if(str.charAt(i)=='2')
+    		if(str.charAt(i)=='2')// same as above for white.
     			white++;	
     			
     	}
     	
     	
     	
-    	if(black==0)
+    	if(black==0)//if the pattern does not contain any black chess,note that pattern can only contains up to 5 spots
     	{
    if(white==5) 	
-    	mark=10000000;
+    	mark=10000000;//this is the most dangerous situation, because white will win.
    if(white==4) 	
-   	mark=15000;
+   	mark=15000;//this case, the pattern is 22220
    if(white==3) 	
-	   	mark=625;
+	   	mark=625;//22200
    if(white==2) 	
-	   	mark=25;
+	   	mark=25;//22000
    if(white==1) 	
-	   	mark=1;
+	   	mark=1;//20000
    return mark;
     	}
     	
