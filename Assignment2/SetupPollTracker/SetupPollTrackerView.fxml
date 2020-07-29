@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SetupPollTrackerController">
+   <children>
+      <Label fx:id="NumOfPollsLable" layoutX="100.0" layoutY="42.0" text="Number of polls to track:" />
+      <Label fx:id="NumOfSeatsLable" layoutX="35.0" layoutY="72.0" text="Number of seats available in election:" />
+      <Label fx:id="NumOfPartiesLable" layoutX="31.0" layoutY="102.0" text="Number of parties running in election:" />
+      <TextField fx:id="NumOfPollsTyped" layoutX="233.0" layoutY="40.0" maxWidth="60.0" prefHeight="25.0" />
+      <TextField fx:id="NumOfSeatsTyped" layoutX="233.0" layoutY="70.0" maxWidth="60.0" prefHeight="25.0" />
+      <TextField fx:id="NumOfPartiesTyped" layoutX="233.0" layoutY="100.0" prefHeight="25.0" prefWidth="60.0" />
+      <Button fx:id="ClearButton" layoutX="80.0" layoutY="200.0" mnemonicParsing="false" onAction="#ClearButtonClicked" text="Clear" />
+      <Button fx:id="SubmitButton" layoutX="170.0" layoutY="200.0" mnemonicParsing="false" onAction="#SubmitButtonClicked" text="Submit" />
+   </children>
+</Pane>
