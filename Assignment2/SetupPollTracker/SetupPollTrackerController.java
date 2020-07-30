@@ -1,5 +1,5 @@
 /**
-  * ClassName: Poll
+  * ClassName: SetupPollTrackerController
   * Description:  This class create the content of Set up Poll Tracker.
   * @author Yuan Liu 30087153
   * @since 2020 7.29
@@ -99,9 +99,9 @@ public class SetupPollTrackerController extends PollTrackerController {
     	PollList aNewPollList = new PollList(NumOfPolls, NumOfSeats);
     	for(int i = 0; i < NumOfPolls; i++ ) {
     		//Add random Poll to the PollList as a test
-    		aNewPollList.addPoll(getFactory().createRandomPoll("Poll"+i));
+    		//aNewPollList.addPoll(getFactory().createRandomPoll("Poll"+i));
     		//Add empty Poll to the PollList named aNewPollList
-    		//aNewPollList.addPoll(new Poll("Poll"+i, NumOfParties));
+    		aNewPollList.addPoll(new Poll("Poll"+i, NumOfParties));
     		}
  
     	////Using setFactory() from PollTrackerController to set the new Polllist to app.polls
