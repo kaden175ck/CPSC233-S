@@ -1,11 +1,10 @@
-
 public class Board {
 public int[][] board=new int[15][15];
-	
+
 	//public void main(String[] args) {
 		//creatBoard();
 	//}
-	
+
 	public void creatBoard() {
 		//print the board
 		System.out.println(" Welcom to Gomoku!");// print a new board everytime a player does something.
@@ -22,7 +21,7 @@ public int[][] board=new int[15][15];
 	public int getValue(int row, int col) {
 		return board[row][col];
 	}
-	
+
 	public void setValue(int row, int col, int color) {
 		board[row][col] = color;
 	}
