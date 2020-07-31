@@ -30,18 +30,14 @@ import model.Party;
  *
  */
 public class EditPollController extends PollTrackerController {
+	//Initialize Instance Variables
 	private Party partyToEdit;
 	private int pollToEditBoxIndex = 0;
 	private int partyToUpdateIndex = 0;
 	private String thePartyName = "";
 	
 
-	private void setPartyToUpdate(Party aParty) {
-		partyToEdit = aParty;
-	}
-	private Party getPartyToUpdate() {
-		return partyToEdit;
-	}
+	
 	@FXML
 	private ResourceBundle resources;
 
@@ -67,41 +63,41 @@ public class EditPollController extends PollTrackerController {
 	@FXML
 	private TextField projectedPercentVoteTextField;
 
+	/**
+	 * Title: clearButtonClicked
+	 * Description: Event based action when user clicks the clear button
+	 * calls the refresh method
+	 */
 	@FXML
 	void clearButtonClicked(ActionEvent event){
 		refresh();
 	}
+	/**
+	 * Title: updatePartyClick
+	 * Description: Event based action when user clicks the update party button
+	 * gets party, poll, projected seats and vote from user input
+	 * 
+	 */
 	@FXML
 	void updatePartyClick(ActionEvent event) {		
-		
-
-		//PollList
+		//Getting PollList object
 		PollList aNewPollListObject = getPollList();
-		//Poll List
+		//Get Poll array
 		Poll[] aNewPollList = aNewPollListObject.getPolls();
-		//Poll
+		//Get the Poll selected in choicebox, chosen by the user
 		Poll thePollToSet = aNewPollList[pollToEditBoxIndex];
-		//Party
-		System.out.println("Does button get "+thePartyName);
+		//Getting the party selected by the choicebox
 		Party thePartyToSet = thePollToSet.getParty(thePartyName);
 		
 		//set seats
 		thePartyToSet.setProjectedNumberOfSeats(Integer.valueOf(projectedNumOfSeatsTextField.getText()));
-		System.out.println("Does the seats be set" + thePartyToSet.getProjectedNumberOfSeats());
+		
 		//set votes
-		thePartyToSet.setProjectedPercentageOfVotes(Integer.valueOf(projectedPercentVoteTextField.getText()));
-		System.out.println("Does the votes be set" + thePartyToSet.getProjectedPercentageOfVotes());
+		thePartyToSet.setProjectedPercentageOfVotes(Float.valueOf(projectedPercentVoteTextField.getText()));
+		
 		setPollList(aNewPollListObject);
 		
-		
-		
-		/**partyToEdit = getPartyToUpdate();
-		if(partyToEdit != null && isValidSeats(projectedNumOfSeatsTextField) == true &&
-				isValidVote(projectedPercentVoteTextField) == true) {
-			partyToEdit.setProjectedNumberOfSeats(Integer.valueOf((projectedNumOfSeatsTextField.getText())));
-			partyToEdit.setProjectedPercentageOfVotes((Float.valueOf(projectedPercentVoteTextField.getText())/100));
-		}
-		refresh();*/
+		refresh();
 	}
 
 
@@ -134,7 +130,7 @@ public class EditPollController extends PollTrackerController {
 	 */
 	private boolean isValidVote(TextField input) {
 		try {
-			double vote = Double.parseDouble(input.getText());
+			float vote = Float.parseFloat(input.getText());
 			System.out.println("New number of seats: " + vote);
 			if(vote >= 0 && vote <=1) {
 				return true;
@@ -157,24 +153,22 @@ public class EditPollController extends PollTrackerController {
 		assert projectedNumOfSeatsTextField != null : "fx:id=\"projectedNumOfSeatsTextField\" was not injected: check your FXML file 'EditPollView.fxml'.";
 		assert projectedPercentVoteTextField != null : "fx:id=\"projectedPercentVoteTextField\" was not injected: check your FXML file 'EditPollView.fxml'.";
 		
-	
-		//pollToEditBox
-		
 	}
-
-
-
+	
 	public void refresh() {
 		
+		// getting poll list and naming them based on order
 		Poll[] pollToEditBoxList = getPollList().getPolls();				
 		String[] pollToEditBoxListName = new String[pollToEditBoxList.length];
 		for(int i = 0; i < pollToEditBoxList.length; i++) {
 			pollToEditBoxListName[i] = "Poll" + (i + 1);
 		}
+		//Occupy choice box with the namess of the polls
 		pollToEditBox.setItems(FXCollections.observableArrayList(pollToEditBoxListName));
 		
 		
-		
+		//adding a listener for the pollToEditBox
+	    //getting the index of poll choice box to set the poll to edit
 		pollToEditBox.getSelectionModel().selectedIndexProperty().addListener(
 				new	ChangeListener<Number>() {
 					@Override
@@ -182,13 +176,11 @@ public class EditPollController extends PollTrackerController {
 						int index = newValue.intValue();
             			if (index >= 0)
             				pollToEditBoxIndex = index;  
-            			//Get the Poll ChoiceBox Selection index 
 	 }});
 
 	    String[] partyToUpdateBoxListNames = new String[pollToEditBoxList[pollToEditBoxIndex].getNumberOfParties()];
 	    partyToUpdateBoxListNames = getFactory().getPartyNames();
 	    partyToUpdateBox.setItems(FXCollections.observableArrayList(partyToUpdateBoxListNames));
-	       //Party[] parties = pollToEditBoxList[pollToEditBoxIndex].getPartiesSortedBySeats();  
 		partyToUpdateBox.getSelectionModel().selectedIndexProperty().addListener(
 				new	ChangeListener<Number>() {
 					@Override
@@ -201,7 +193,10 @@ public class EditPollController extends PollTrackerController {
 		}});
 		//Get the name of Party which selected in Party Choice Box
 		thePartyName = partyToUpdateBoxListNames[partyToUpdateIndex];
-		
+		projectedNumOfSeatsTextField.clear();
+        projectedPercentVoteTextField.clear();
+        partyToUpdateBox.setValue(null);
+        pollToEditBox.setValue(null);
 	}
 
 }
