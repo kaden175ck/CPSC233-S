@@ -1,7 +1,7 @@
 /**
   * ClassName: SetupPartyController
   * Description: This class represents the set party controller.
-  * @author  Yuan Liu 30087153
+  * @author  Haoyang Shi 30105296
   * @date 2020 7.30
   */
 package application;
