@@ -64,6 +64,7 @@ public class SetupPollTrackerController extends PollTrackerController {
 	  * Title: ClearButtonClicked
 	  * Description: This is a method to handle the event of 'Clear' button.
 	  * Every time after click 'Clear' button, the three TextField value will clear all information in current view and bring it back to a default view.
+	  * @param event
 	  */
     @FXML
     void ClearButtonClicked(ActionEvent event) {
@@ -76,6 +77,7 @@ public class SetupPollTrackerController extends PollTrackerController {
 	  * Title: SubmitButtonClicked
 	  * Description: This is a method to handle the event of 'Submit' button.
 	  * Every time after click 'Submit' button, all information in the polls and factory objects should be updated to reflect the new information.
+	  * @param event
 	  */
     @FXML
     void SubmitButtonClicked(ActionEvent event) {
