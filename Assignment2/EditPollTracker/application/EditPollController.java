@@ -23,8 +23,7 @@ import model.Party;
 /**
  * Title: EditPollController
  * Description: Controller class for EditPollView.fxml
- * Controller that the user picks a poll from a choice box and then a party,
- * user will then enter seats and vote percent to change.
+ *
  *
  * @author Kenneth Liu 30066722
  * July 26th
@@ -32,38 +31,16 @@ import model.Party;
  */
 public class EditPollController extends PollTrackerController {
 	private Party partyToEdit;
-	private Poll pollToEdit;
-	/*
-	 * Title: setPartyToUpdate
-	 * Description: Takes in a party as a parameter (will be the one user selected from choice box)
-	 * and sets the party
-	 */
+	private int pollToEditBoxIndex = 0;
+	private int partyToUpdateIndex = 0;
+	private String thePartyName = "";
+	
+
 	private void setPartyToUpdate(Party aParty) {
 		partyToEdit = aParty;
 	}
-	/*
-	 * Title: getPartyToUpdate
-	 * Description: returns the party set by the choicebox
-	 * Returns: party object
-	 */
 	private Party getPartyToUpdate() {
 		return partyToEdit;
-	}
-	/*
-	 * Title: setPollToUpdate
-	 * Description: Takes in a poll as a parameter (from choicebox)
-	 *
-	 */
-	private void setPollToUpdate(Poll aPoll) {
-		pollToEdit = aPoll;
-	}
-	/*
-	 * Title: getPollToUpdate
-	 * Description: returns the poll object set by the choicebox
-	 * Returns: poll object
-	 */
-	private Poll getPollToUpdate() {
-		return pollToEdit;
 	}
 	@FXML
 	private ResourceBundle resources;
@@ -95,15 +72,36 @@ public class EditPollController extends PollTrackerController {
 		refresh();
 	}
 	@FXML
-	void updatePartyClick(ActionEvent event) {			//event that will update party when button is clicked
-		//get partyToEdit from getter method
-		partyToEdit = getPartyToUpdate();
+	void updatePartyClick(ActionEvent event) {		
+		
+
+		//PollList
+		PollList aNewPollListObject = getPollList();
+		//Poll List
+		Poll[] aNewPollList = aNewPollListObject.getPolls();
+		//Poll
+		Poll thePollToSet = aNewPollList[pollToEditBoxIndex];
+		//Party
+		System.out.println("Does button get "+thePartyName);
+		Party thePartyToSet = thePollToSet.getParty(thePartyName);
+		
+		//set seats
+		thePartyToSet.setProjectedNumberOfSeats(Integer.valueOf(projectedNumOfSeatsTextField.getText()));
+		System.out.println("Does the seats be set" + thePartyToSet.getProjectedNumberOfSeats());
+		//set votes
+		thePartyToSet.setProjectedPercentageOfVotes(Integer.valueOf(projectedPercentVoteTextField.getText()));
+		System.out.println("Does the votes be set" + thePartyToSet.getProjectedPercentageOfVotes());
+		setPollList(aNewPollListObject);
+		
+		
+		
+		/**partyToEdit = getPartyToUpdate();
 		if(partyToEdit != null && isValidSeats(projectedNumOfSeatsTextField) == true &&
-				isValidVote(projectedPercentVoteTextField) == true) { //
+				isValidVote(projectedPercentVoteTextField) == true) {
 			partyToEdit.setProjectedNumberOfSeats(Integer.valueOf((projectedNumOfSeatsTextField.getText())));
 			partyToEdit.setProjectedPercentageOfVotes((Float.valueOf(projectedPercentVoteTextField.getText())/100));
 		}
-		refresh();
+		refresh();*/
 	}
 
 
@@ -137,6 +135,7 @@ public class EditPollController extends PollTrackerController {
 	private boolean isValidVote(TextField input) {
 		try {
 			double vote = Double.parseDouble(input.getText());
+			System.out.println("New number of seats: " + vote);
 			if(vote >= 0 && vote <=1) {
 				return true;
 			}
@@ -157,52 +156,52 @@ public class EditPollController extends PollTrackerController {
 		assert partyToUpdateBox != null : "fx:id=\"partyToUpdateBox\" was not injected: check your FXML file 'EditPollView.fxml'.";
 		assert projectedNumOfSeatsTextField != null : "fx:id=\"projectedNumOfSeatsTextField\" was not injected: check your FXML file 'EditPollView.fxml'.";
 		assert projectedPercentVoteTextField != null : "fx:id=\"projectedPercentVoteTextField\" was not injected: check your FXML file 'EditPollView.fxml'.";
-
+		
+	
+		//pollToEditBox
+		
 	}
 
-	public void refresh() {
-		PollList currentPollList = super.getPollList();			//obtain poll list from superclass
-		Poll[] polls = currentPollList.getPolls();				//create an array of polls from poll list
-		String[] pollNamesList = new String[polls.length];
-		//create string array of names to display in choicebox
-		for(int i = 0; i < polls.length; i++) {
-			pollNamesList[i] = "Poll" + (i + 1);
-		}
-		pollToEditBox.setItems(FXCollections.observableArrayList(pollNamesList));
 
-		//get selection model for poll to edit box
+
+	public void refresh() {
+		
+		Poll[] pollToEditBoxList = getPollList().getPolls();				
+		String[] pollToEditBoxListName = new String[pollToEditBoxList.length];
+		for(int i = 0; i < pollToEditBoxList.length; i++) {
+			pollToEditBoxListName[i] = "Poll" + (i + 1);
+		}
+		pollToEditBox.setItems(FXCollections.observableArrayList(pollToEditBoxListName));
+		
+		
+		
 		pollToEditBox.getSelectionModel().selectedIndexProperty().addListener(
 				new	ChangeListener<Number>() {
 					@Override
 					public void changed(ObservableValue observable, Number oldValue, Number newValue) {
-						//poll to update is based on the index of choicebox
-						Poll pollToUpdate = polls[newValue.intValue()];
-						setPollToUpdate(pollToUpdate);
+						int index = newValue.intValue();
+            			if (index >= 0)
+            				pollToEditBoxIndex = index;  
+            			//Get the Poll ChoiceBox Selection index 
+	 }});
 
-						//create a partyNames String array to occupy choicebox, with length of number of parties in poll
-						String[] partyNames = new String[getPollToUpdate().getNumberOfParties()];
-						partyNames = getFactory().getPartyNames();
-
-						//get parties array from poll selected from choicebox
-						Party[] parties = getPollToUpdate().getPartiesSortedBySeats();
-
-						partyToUpdateBox.setItems(FXCollections.observableArrayList(partyNames));
-
-						partyToUpdateBox.getSelectionModel().selectedIndexProperty().addListener(
-								new	ChangeListener<Number>() {
-									@Override
-									public void changed(ObservableValue observable1, Number oldValue1, Number newValue1) {
-										//partyToUpdate is equal to the party element at index
-										Party partyToUpdate = parties[newValue1.intValue()];
-										//set party to update with party selected with choicebox
-										setPartyToUpdate(partyToUpdate);
-									}});
-					}});
-		//clearing the values of textfields and boxes when refresh is called
-		projectedNumOfSeatsTextField.clear();
-		projectedPercentVoteTextField.clear();
-		partyToUpdateBox.setValue(null);
-		pollToEditBox.setValue(null);
+	    String[] partyToUpdateBoxListNames = new String[pollToEditBoxList[pollToEditBoxIndex].getNumberOfParties()];
+	    partyToUpdateBoxListNames = getFactory().getPartyNames();
+	    partyToUpdateBox.setItems(FXCollections.observableArrayList(partyToUpdateBoxListNames));
+	       //Party[] parties = pollToEditBoxList[pollToEditBoxIndex].getPartiesSortedBySeats();  
+		partyToUpdateBox.getSelectionModel().selectedIndexProperty().addListener(
+				new	ChangeListener<Number>() {
+					@Override
+					public void changed(ObservableValue observable, Number oldValue, Number newValue) {
+						int index = newValue.intValue();
+						System.out.println("the input value" + newValue);
+            			if (index >= 0)
+            				partyToUpdateIndex = index;
+            			//Get the Party ChoiceBox Selection index 
+		}});
+		//Get the name of Party which selected in Party Choice Box
+		thePartyName = partyToUpdateBoxListNames[partyToUpdateIndex];
+		
 	}
 
 }
