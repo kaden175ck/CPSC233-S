@@ -56,10 +56,11 @@ public class SetupPartyController extends PollTrackerController {
     private int partyToChangeIndex = 0;
 
 
-        /**
+    /**
 	  * Title: ClearButtonClicked
 	  * Description: This is a method to clear the data of ChoiceBox and TextField.
 	  * Every time after click 'Clear' button, it will clear all information in this view and update information displayed to the most information from the current PollList and Factory objects
+	  * @param event
 	  */
     @FXML
     void ClearButtonClicked(ActionEvent event) {
@@ -71,10 +72,11 @@ public class SetupPartyController extends PollTrackerController {
     	SelectPartyChoiceBox.setItems(FXCollections.observableArrayList(value));
     }
     
-        /**
+    /**
 	  * Title: SetPartyButtonClicked
 	  * Description: This is a method to set the party name which will replace a party name in the choice box.
 	  * Every time after click 'Set Party Info' button, it will make the TextFiled information replace the selected party name in ChoiceBox.
+	  * @param event
 	  */
     @FXML
     void SetPartyButtonClicked(ActionEvent event) {
@@ -83,10 +85,11 @@ public class SetupPartyController extends PollTrackerController {
 
     }
 
-        /**
+    /**
 	  * Title: SubmitButtonClicked
 	  * Description: This is a method to set the party name to the Factory.
 	  * Every time after click 'Submit All Party Info, it will set the Factory a name list in current Choice Box.
+	  * @param event
 	  */
     @FXML
     void SubmitButtonClicked(ActionEvent event) {
@@ -122,7 +125,7 @@ public class SetupPartyController extends PollTrackerController {
 
     }
 
-        /**
+    /**
 	  * Title: refresh()
 	  * Description: This is a method refresh to the default view.
 	  * Every time after change tab, the TextField and Choice will go back to the original view
