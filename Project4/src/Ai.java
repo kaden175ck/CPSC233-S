@@ -1,6 +1,6 @@
 import java.util.*;
 /**
-  * @ClassName: Ai 
+  * @ClassName: Ai 1 
   * @Description: simulate a computer turn
   * @author Haoyang Shi
   * @date 2020   7.24
