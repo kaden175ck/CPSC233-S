@@ -1,4 +1,7 @@
 import java.util.Scanner;
+
+//newest version without GUI. Every update on this project will be in the branch called "Kaden"
+
 /**
   * @ClassName: Game
   * @Description: TODO, remember this class is the main class.
