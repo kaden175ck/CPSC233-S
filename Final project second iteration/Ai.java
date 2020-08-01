@@ -1,4 +1,9 @@
 import java.util.*;
+
+
+//newest version without GUI. Every update on this project will be in the branch called "Kaden"
+
+
 /**
   * @ClassName: Ai 
   * @Description: simulate a computer turn
