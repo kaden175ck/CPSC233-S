@@ -18,6 +18,7 @@ import java.util.Scanner;
 //thus, if the user enter out of bounds value like (88,666), then the program will crash. 
 //if yall want to add error handling method for this one, feel free to do so,
 //but i think it's unnecessary.(because eventually everything will be done on a window(clicking, not entering numbers)
+//for this program, the board will be printed everytime a player/Ai placed a chess. 
 public class Game{	
 	//private Ai ai;
 	private int[][] board;
