@@ -1,3 +1,4 @@
+import java.util.Scanner;
 /**
   * @ClassName: Game
   * @Description: TODO, remember this class is the main class.
@@ -162,6 +163,8 @@ public class Game{
 			//print the board
 		   //I think this part need to be changed when we do GUI
 			System.out.println("Welcom to Gomoku!");// print a new board everytime a player does something.
+			//System.out.println("who do u want to play with? enter 1 for Ai, 2 for another human player:");
+			//int choice=input.nextInt();
 			for(int i=0;i<15;i++) {
 				System.out.println();	
 				for(int j=0;j<15;j++) {
@@ -175,17 +178,32 @@ public class Game{
 	
 	
 	public static void main(String[] args) {
-		 Game game=new Game();
-		 
-		 
-		 //this is where magic happens, I think it will also benefits GUI part.
-		 // right now the program is set to be Player VS player, but when u change "HumanPlayer" to "Ai", then run it, u will play with Ai!!!
+		System.out.println("Who do u want to play with? Enter 1 for Ai, 2 for Another human player:");
+		Scanner keyboard=new Scanner(System.in);
+		int choice=keyboard.nextInt();
+		
+		 if (choice==1) {//to play with Ai
+		Game game=new Game();
+		
 		Player aHuman1 = new HumanPlayer (game.board,1);//can be either Ai or HumanPlayer
 
 		Player aHuman2 = new Ai (game.board,2);//can be either Ai or HumanPlayer
 
 		 while(game.play(aHuman1)&&game.play(aHuman2));//keep playing if condition is satisfied
+		 }
 		 
+		 
+		 
+		 if (choice==2) {//play with another player
+			Game game=new Game();
+			
+			Player aHuman1 = new HumanPlayer (game.board,1);//can be either Ai or HumanPlayer
+
+			Player aHuman2 = new HumanPlayer (game.board,2);//can be either Ai or HumanPlayer
+
+			 while(game.play(aHuman1)&&game.play(aHuman2));//keep playing if condition is satisfied
+			 
+		 }
 	}
 
 		 
