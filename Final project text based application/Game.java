@@ -1,56 +1,50 @@
-import java.util.Scanner;
 
-public class Game {
-	private HumanPlayer human;
-	private static GameConfiguration config;
-	private AI computer; //AI class
-	private static Scanner input = new Scanner(System.in);
-	private int gameMode;
+public class Game extends GameConfiguration {	
+	public static void main(String[] args) {
+		//Draw board
+		Board aBoard = new Board();
+		aBoard.creatBoard();
+		
 
-	public void setup() {
+		HumanPlayer aHuman1 = new HumanPlayer();
+		int human1Color = aHuman1.setColor();
 		
-	}
-
-	public void game() {
-		System.out.println("Welcome to Gomoku");
-		System.out.println("Please choose between following options:");
-		System.out.println("1: Player vs AI, 2: Player vs Player");
-		gameMode = input.nextInt();
-		//if gamemde =human vs human  
-		//private humanplayer human2
+		HumanPlayer aHuman2 = new HumanPlayer();
+		aHuman2.setOpponentColor(human1Color);
 		
-		System.out.println("Which colour would you like to be (player1):")
-		System.out.println("1: Black, 2: White");
-		int colour = input.nextInt();
-		//human.setcolor(colour);
-		
-		while (config.hasWon() == false && gameMode == 1) {
-			if (human.getColor() == black) {
-				human.play();
-				human2.play();
-			}
-			else {
-				human2.play();
-				human.play();
-			}
+		 int counter = 0;
+		 while((counter<=112)) {
+			 aHuman1.play(aBoard);
+			 
+			 if(checkWon(aHuman1.getRow(), aHuman1.getCol(), aBoard) == true) {
+				 if(human1Color == 1) {
+					 System.out.println("Black win!");
+				 }
+				 else if(human1Color == 2) {
+					 System.out.println("White win!");
+				 }
+				break;
+				}
+			 
+			 aHuman2.play(aBoard);
+			 if(checkWon(aHuman2.getRow(), aHuman2.getCol(), aBoard) == true) {
+				 if(human1Color == 1) {
+					 System.out.println("White win!");
+				 }
+				 else if(human1Color == 2) {
+					 System.out.println("Black win!");
+				 }
+				break;
+				}
+			 
+			 
+			 counter++;	
 		}
-		while (config.hasWon() == false && gameMode == 2) {
-			if (human.getColor == black) {
-				human.play();
-				computer.play();
-			}
-			else {
-				computer.play();
-				human.play();
-			}
-		}
+		//aHuman2.play(aBoard);
+		
 		
 	}
 	
-	public void main(String[] args) {
-		game();
-	}
 	
-	
-	
+
 }
