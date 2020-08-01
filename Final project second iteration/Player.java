@@ -6,6 +6,7 @@
  * @date 2020   7.28      7:15:11
  * @version V1.0
  */
+//newest version without GUI. Every update on this project will be in the branch called "Kaden"
 
 /**
   * @ClassName: Player
