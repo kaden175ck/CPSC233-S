@@ -18,6 +18,10 @@ import java.util.*;
 //and I believe Offense is the best way for defense
 
 
+//when I playes this game on the console, I found it's hard to find where have Ai placed his chess(because AI doesn't  think and hesitate), 
+//so I'm thinking if we can circle the position that AI hace took and warn the player that the Ai placed his chess here.
+// I think this is actually doable, I have a method that will always return the position the Ai take.
+
 public class Ai extends Player{
 	
 	private HashMap<String,Integer> map1=new HashMap<>();
