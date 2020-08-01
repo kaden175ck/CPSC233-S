@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="Assignment2ForSubmit/src/|Assignment1/|Project4/src/|Final project text based application/|MissionNotSubmit/EditPollTracker/" kind="src" path=""/>
+	<classpathentry kind="src" path="Assignment1"/>
+	<classpathentry kind="src" path="Assignment2ForSubmit/src"/>
+	<classpathentry kind="src" path="Final project text based application"/>
+	<classpathentry kind="src" path="MissionNotSubmit/EditPollTracker"/>
+	<classpathentry kind="src" path="Project4/src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
