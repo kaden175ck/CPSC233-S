@@ -25,7 +25,7 @@ import model.Party;
  * Description: Controller class for EditPollView.fxml
  *
  *
- * @author Kenneth Liu 30066722
+ * @author  Kenneth Liu 30066722
  * July 26th
  *
  */
