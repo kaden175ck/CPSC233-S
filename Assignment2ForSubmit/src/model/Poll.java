@@ -105,7 +105,7 @@ public class Poll {
 	  */
 	public Party[] getPartiesSortedBySeats() {
 		//Use comparator and static method Array.sort to sort party object.
-		Arrays.sort(parties, new sortPartiesComparator());
+		//Arrays.sort(parties, new sortPartiesComparator());
 		return parties;
 	}
 
@@ -116,7 +116,7 @@ public class Poll {
 	  * @return parties: The array of party objects.
 	  */
 	public Party[] getPartiesSortedByVotes() {
-		Arrays.sort(parties, new sortPartiesComparator());
+		//Arrays.sort(parties, new sortPartiesComparator());
 		return parties;
 	}
 
@@ -144,14 +144,14 @@ public class Poll {
   * Title: sortPartiesComparator
   * Description: This is a inner class implements comparator. It is designed to work with Array.sort, and sort party object in Poll class.
   */
-class sortPartiesComparator implements Comparator<Party> {
+/**class sortPartiesComparator implements Comparator<Party> {
 
 	/**
 	  * Title: compare
 	  * Description: This is a override to compare two party objects.
 	  * @return A positive integer or a negative integer which will be used in comparator.
 	  */
-	@Override
+	/**@Override
 	public int compare(Party o1, Party o2) {
 		if(o1.getProjectedNumberOfSeats() != o2.getProjectedNumberOfSeats()) {
 			//Compare the projected number of seats between two party objects.
@@ -161,4 +161,4 @@ class sortPartiesComparator implements Comparator<Party> {
 		return (int) ((o2.getProjectedPercentageOfVotes() - o1.getProjectedPercentageOfVotes()) * 100);
 	}
 
-}
+}*/
