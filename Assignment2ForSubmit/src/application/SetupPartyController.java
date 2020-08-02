@@ -51,10 +51,15 @@ public class SetupPartyController extends PollTrackerController {
     private TextField PartyNameTextField;
     
     //Initialize the default Factory psrtyName
-    private String[] value =  {};
+    private String[] value = {};
     //Initialize a  integer to get the value from listener
     private int partyToChangeIndex = 0;
     
+    
+    /**private String[] getDefaultpartyName() {
+    	defaultValue = getFactory().getPartyNames();
+		return defaultValue;
+    }*/
 
 
     /**
@@ -66,10 +71,9 @@ public class SetupPartyController extends PollTrackerController {
     @FXML
     void ClearButtonClicked(ActionEvent event) {
     	PartyNameTextField.clear();
-    	String[] originalArray =  {"BQ","CPC","Green","Liberal","NDP","PPC","Rhinoceros"};
-    	for(int i = 0; i < value.length; i++){
-    		value[i] = originalArray[i];
-    	  }
+    	for(int i = 0; i < value.length; i++) {
+    		value[i] = "" + i;
+    	}
     	SelectPartyChoiceBox.setItems(FXCollections.observableArrayList(value));
     }
     
@@ -110,7 +114,8 @@ public class SetupPartyController extends PollTrackerController {
         assert SelectPartyLable != null : "fx:id=\"SelectPartyLable\" was not injected: check your FXML file 'SetupPartiesView.fxml'.";
         assert PartyNameTextField != null : "fx:id=\"PartyNameTextField\" was not injected: check your FXML file 'SetupPartiesView.fxml'.";
        
-        
+       
+       
         //Initialize the ChoiceBox name list
         SelectPartyChoiceBox.setItems(FXCollections.observableArrayList(value));
         //Add Listener of ChoiceBox
@@ -137,6 +142,7 @@ public class SetupPartyController extends PollTrackerController {
 	public void refresh() {
 		PartyNameTextField.clear();
 		value = getFactory().getPartyNames();
-    	SelectPartyChoiceBox.setItems(FXCollections.observableArrayList(value));	
+    	SelectPartyChoiceBox.setItems(FXCollections.observableArrayList(value));
+    	
 	}
 }

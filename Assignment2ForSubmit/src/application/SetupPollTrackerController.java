@@ -106,7 +106,7 @@ public class SetupPollTrackerController extends PollTrackerController {
     		aNewPollList.addPoll(new Poll("Poll"+i, NumOfParties));
     		}
  
-    	////Using setFactory() from PollTrackerController to set the new PollList to app.polls
+    	////Using setFactory() from PollTrackerController to set the new Polllist to app.polls
     	setPollList(aNewPollList);
 
     }
@@ -132,10 +132,6 @@ public class SetupPollTrackerController extends PollTrackerController {
 	  */
 	@Override
 	public void refresh() {
-		//Create a default factory and 
-		//Factory aDefaultFactory = getFactory();
-		//PollList polls = aDefaultFactory.createRandomPollList(5);
-		//setPollList(polls);
 		NumOfPollsTyped.clear();
     	NumOfSeatsTyped.clear();
     	NumOfPartiesTyped.clear();
