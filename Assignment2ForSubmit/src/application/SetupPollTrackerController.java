@@ -132,9 +132,10 @@ public class SetupPollTrackerController extends PollTrackerController {
 	  */
 	@Override
 	public void refresh() {
-		Factory aDefaultFactory = getFactory();
-		PollList polls = aDefaultFactory.createRandomPollList(5);
-		setPollList(polls);
+		//Create a default factory and 
+		//Factory aDefaultFactory = getFactory();
+		//PollList polls = aDefaultFactory.createRandomPollList(5);
+		//setPollList(polls);
 		NumOfPollsTyped.clear();
     	NumOfSeatsTyped.clear();
     	NumOfPartiesTyped.clear();

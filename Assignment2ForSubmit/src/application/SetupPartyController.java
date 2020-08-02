@@ -54,6 +54,7 @@ public class SetupPartyController extends PollTrackerController {
     private String[] value =  {};
     //Initialize a  integer to get the value from listener
     private int partyToChangeIndex = 0;
+    
 
 
     /**
@@ -65,7 +66,7 @@ public class SetupPartyController extends PollTrackerController {
     @FXML
     void ClearButtonClicked(ActionEvent event) {
     	PartyNameTextField.clear();
-    	String[] originalArray =  getFactory().getPartyNames();
+    	String[] originalArray =  {"BQ","CPC","Green","Liberal","NDP","PPC","Rhinoceros"};
     	for(int i = 0; i < value.length; i++){
     		value[i] = originalArray[i];
     	  }
