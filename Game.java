@@ -155,16 +155,15 @@ public class Game{
 	
 	
 	
-	
+ // print a new board everytime a player does something.
 
 	public Game() {
 		board=new int[15][15];
 
 			//print the board
 		   //I think this part need to be changed when we do GUI
-			System.out.println("Welcom to Gomoku!");// print a new board everytime a player does something.
-			//System.out.println("who do u want to play with? enter 1 for Ai, 2 for another human player:");
-			//int choice=input.nextInt();
+			System.out.println("Welcom to Gomoku!");
+		
 			for(int i=0;i<15;i++) {
 				System.out.println();	
 				for(int j=0;j<15;j++) {
@@ -184,7 +183,7 @@ public class Game{
 		
 		 if (choice==1) {//to play with Ai
 		Game game=new Game();
-		
+		System.out.println("1 will represent your chess,2 will represent Ai's chess");
 		Player aHuman1 = new HumanPlayer (game.board,1);//can be either Ai or HumanPlayer
 
 		Player aHuman2 = new Ai (game.board,2);//can be either Ai or HumanPlayer
@@ -196,10 +195,11 @@ public class Game{
 		 
 		 if (choice==2) {//play with another player
 			Game game=new Game();
+			System.out.println("1 will represent Player1,2 will represent player2");
 			
-			Player aHuman1 = new HumanPlayer (game.board,1);//can be either Ai or HumanPlayer
+			Player aHuman1 = new HumanPlayer (game.board,1);
 
-			Player aHuman2 = new HumanPlayer (game.board,2);//can be either Ai or HumanPlayer
+			Player aHuman2 = new HumanPlayer (game.board,2);
 
 			 while(game.play(aHuman1)&&game.play(aHuman2));//keep playing if condition is satisfied
 			 
@@ -231,10 +231,10 @@ public  boolean play(Player player) {
 
 			if(checkWon(coord[0], coord[1], board) ) {
 				 if( player.getColor() == 1) {
-					 System.out.println("Black win!");
+					 System.out.println("1 win!");
 				 }
 				 else if( player.getColor() == 2) {
-					 System.out.println("White win!");
+					 System.out.println("2 win!");
 				 }
 				 return false;
 				}
