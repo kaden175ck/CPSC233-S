@@ -6,7 +6,7 @@
  * @date 2020   7.28      7:15:11
  * @version V1.0
  */
-//newest version without GUI. Every update on this project will be in the branch called "Kaden"
+
 
 /**
   * @ClassName: Player
@@ -14,6 +14,8 @@
   * @author Haoyang Shi
   * @date 2020   7.29
   */
+
+//if u want to use the newest text based version, check out the sub-branch called "Kaden". Every update on this project will be in there.
 //below comment is for my teammate(will be deleted after everything is settled.)
 
 //commenting is not complete(feel free to add more). the code can be polished more if yall want to
