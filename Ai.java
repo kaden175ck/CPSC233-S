@@ -77,17 +77,17 @@ public class Ai extends Player{
 					{mark=checkMark	(i,j);
 					if(max<mark)
 					{
-						max=mark;
-						 coord[0]=i;
-						 coord[1]=j;
+						max=mark;//this is AI's decision
+						 coord[0]=i;//this is AI's decision
+						 coord[1]=j;//this is AI's decision
 					}
 					}
 	    	}
 	 
 	 return coord;
 	 }
-	 
-	/* public static void main(String[] args)
+	/*this block of code was used for testing errors, ignore this.
+	* public static void main(String[] args)
 	 {
 		 System.out.println(mark("22220"));
 	 }*/
@@ -98,7 +98,7 @@ public class Ai extends Player{
     	
     	for(int i=0;i<str.length();i++)
     	{
-    		if(str.charAt(i)=='1')
+    		if(str.charAt(i)=='1')//remember we create an empty string below and record every directions of placing? this is to count the number of time 1 and 2 appears(for the next block of code)
     			black++;
     		if(str.charAt(i)=='2')
     			white++;	
@@ -106,7 +106,9 @@ public class Ai extends Player{
     	}
     	
     	
-    	
+   
+    //this block of code is easy to understand
+	    // just know that diffent type of placing will return a different value of mark.(which is the core of this AI)
    if(black==0){
 	   
    if(white==5) 	
@@ -137,7 +139,10 @@ public class Ai extends Player{
     			return mark;
     }
     
-    
+    /**
+    *
+    *
+    */
 	public int checkMark	(int a,int b){
 		
 		board[a][b]=color;
@@ -145,13 +150,17 @@ public class Ai extends Player{
 		for(int x=0;x<board.length-4;x++)
 			for(int y=0;y<board[0].length-4;y++)
 			{
-				mark+=checkRow(x, y)+checkDiag( x, y)+checkCol(x,y);
+				mark+=checkRow(x, y)+checkDiag( x, y)+checkCol(x,y);//because we need the best postition for ai, so we have to have the largeset(best)mark.
 			}
 		board[a][b]=0;
 		return mark;
 	}
 	
-	
+	/**
+	*
+	*
+	*
+	*/
 
 	public int checkRow(int x,int y){
 		HashMap<String,Integer> map;// ignore the warning.
