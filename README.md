@@ -3,9 +3,16 @@ Submmition about iteration1 and iteration2
 
 Iteration1  (text-based version) can be found in the "master" branch titled "GomokuCompletedIteration1"
 
+TO RUN iteration1 TextBased version:
+
+ECLIPSE: 
+
+Import Ai.java, Game.java, Player.java, HumanPlayer.java files to a default package
+Run Game.java.
+
 Iteration2 (initial GUI version) can be found in the "master" branch titled "Final project second iteration" 
 
-TO RUN: JavaFX must be setup on the platform used
+TO RUN iteration2 GUI version: JavaFX must be setup on the platform used
 
 ECLIPSE:
 
