@@ -1,5 +1,6 @@
 # CPSC233-S-Team-F
 Submmition about iteration1 and iteration2
+
 Iteration1  (text-based version) can be found in the "master" branch titled "GomokuCompletedIteration1"
 
 Iteration2 (initial GUI version) can be found in the "master" branch titled "Final project second iteration" 
