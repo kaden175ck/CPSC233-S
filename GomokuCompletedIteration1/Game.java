@@ -1,26 +1,31 @@
 import java.util.Scanner;
 /**
   * @ClassName: Game
-  * @Description: TODO, remember this class is the main class.
+  * @Description: this is the main class for the project, control the flow of the games.
   * @author Haoyang Shi
   * @date 2020   7.28 
   *
   */
-//below comment is for my teammate(will be deleted after everything is settled.)
 
-//commenting is not complete(feel free to add more)..the code can be polished more if yall want to
-//when yall add the GUI, try to keep the coding style similar to mine
-//Few things to note here:
 
-//this class, the "Game class" is the main class. few important things will be done in this class
 //will keep asking for input when user's input position is already token
 //for GUI, if user click on the token spot, then nothing should happen, until the user click on the empty spot
-//thus, if the user enter out of bounds value like (88,666), then the program will crash. 
-//if yall want to add error handling method for this one, feel free to do so,
-//but i think it's unnecessary.(because eventually everything will be done on a window(clicking, not entering numbers)
+//if the user enter out of bounds value like (88,666), then the program will crash. 
 public class Game{	
-	//private Ai ai;
 	private int[][] board;
+	
+	
+	/**
+	  *
+	  * @Title: checkWon
+	  * @Description: check the winning situation from all the directions
+	  * @param @param row
+	  * @param @param col
+	  * @param @param board
+	  * @param @return    
+	  * @return boolean    
+	  * @throws
+	  */
 	
 	
 	public static boolean checkWon(int row,int col, int [][] board) {
@@ -29,11 +34,21 @@ public class Game{
 	}
 	
 	
+    /**
+      * @Title: checkRow
+      * @Description: check the winning situation in row
+      * @param @param row
+      * @param @param col
+      * @param @param board
+      * @param @return    
+      * @return boolean    
+      * @throws
+      */
+    
+    
     public static boolean checkRow(int row, int col, int [][]board){
-
         //identify which color
         int color = board[row][ col];
-        //count how many tiles in row
         int count=1;
         // check result
         boolean checkResult = false;
@@ -59,11 +74,23 @@ public class Game{
     	return checkResult;
     }
        
-     public static boolean checkCol(int row, int col, int[][]board){
+    
+     /**
+      *
+      * @Title: checkCol
+      * @Description: check the winning situation in col
+      * @param @param row
+      * @param @param col
+      * @param @param board
+      * @param @return    
+      * @return boolean    
+      * @throws
+      */
+    
+    
+    public static boolean checkCol(int row, int col, int[][]board){
     	 //identify which color
          int color = board[row][col];
-        //the xcoordinate and ycoordinate of tiles is the same as the index of their array index. 
-         //count how many tiles in row
          int count=1;
          // check result
          boolean checkResult = false;
@@ -87,13 +114,27 @@ public class Game{
              checkResult = true;
          } 
          return checkResult;
-     }
          
+     }
+     
+     
+         
+    /**
+      *
+      * @Title: checkDiagonalDownLeftToTopRight
+      * @Description: check the winning situation from DownLeft To TopRight
+      * @param @param row
+      * @param @param col
+      * @param @param board
+      * @param @return    
+      * @return boolean    
+      * @throws
+      */
+    
+    
     public static boolean checkDiagonalDownLeftToTopRight(int row, int col, int[][]board) {
     	 //identify which color
          int color = board[row][col];
-        //the xcoordinate and ycoordinate of tiles is the same as the index of their array index. 
-         //count how many tiles in row
          int count=1;
          // check result
          boolean checkResult = false;
@@ -113,18 +154,31 @@ public class Game{
             	 break;
          }
 
-
          if (count >= 5) {
              checkResult = true;
          } 
          return checkResult;
+         
      }
+    
+    
+    
+    /**
+      *
+      * @Title: checkDiagonalTopLeftToDownRight
+      * @Description: check the winning situation from TopLeft To DownRight
+      * @param @param row
+      * @param @param col
+      * @param @param board
+      * @param @return    
+      * @return boolean    
+      * @throws
+      */
+    
     
     public static boolean checkDiagonalTopLeftToDownRight(int row, int col, int[][]board) {
     	 //identify which color
         int color = board[row][col];
-       //the xcoordinate and ycoordinate of tiles is the same as the index of their array index. 
-        //count how many tiles in row
         int count=1;
         // check result
         boolean checkResult = false;
@@ -148,23 +202,14 @@ public class Game{
             checkResult = true;
         } 
         return checkResult;
+        
     } 
 
 
 	
-	
-	
-	
-	
-
+ // print a 15*15 board
 	public Game() {
 		board=new int[15][15];
-
-			//print the board
-		   //I think this part need to be changed when we do GUI
-			System.out.println("Welcom to Gomoku!");// print a new board everytime a player does something.
-			//System.out.println("who do u want to play with? enter 1 for Ai, 2 for another human player:");
-			//int choice=input.nextInt();
 			for(int i=0;i<15;i++) {
 				System.out.println();	
 				for(int j=0;j<15;j++) {
@@ -173,72 +218,88 @@ public class Game{
 			}
 			System.out.println();
 			System.out.println();
-	
 	}
 	
 	
+	//the main method will control the flow of the game(pass on the parameters) and display any message if needed
 	public static void main(String[] args) {
-		System.out.println("Who do u want to play with? Enter 1 for Ai, 2 for Another human player:");
+		
+		System.out.println("Welcom to Gomoku!");
+		System.out.println("First one to form an unbroken chain of five pieces horizontally, vertically, or diagonally win the game.\n");
+		System.out.println("Who do u want to play Gomoku with? Enter 1 for Ai, 2 for Another human player:");
+	
 		Scanner keyboard=new Scanner(System.in);
 		int choice=keyboard.nextInt();
 		
-		 if (choice==1) {//to play with Ai
-		Game game=new Game();
 		
-		Player aHuman1 = new HumanPlayer (game.board,1);//can be either Ai or HumanPlayer
-
-		Player aHuman2 = new Ai (game.board,2);//can be either Ai or HumanPlayer
-
-		 while(game.play(aHuman1)&&game.play(aHuman2));//keep playing if condition is satisfied
+		 if (choice==1) {//to play with Ai
+		 Game game=new Game();
+		 System.out.println("1 will represent your chess\n2 will represent Ai's chess");
+		
+		Player aHuman1 = new HumanPlayer (game.board,1);//refresh the board;human player is represented by 1
+		Player aHuman2 = new Ai (game.board,2);//refresh the board;Ai is represented by 2
+		
+		while(game.play(aHuman1)&&game.play(aHuman2));//keep playing if condition is satisfied
 		 }
 		 
 		 
 		 
 		 if (choice==2) {//play with another player
 			Game game=new Game();
+			System.out.println("1 will represent Player1\n2 will represent player2");
 			
-			Player aHuman1 = new HumanPlayer (game.board,1);//can be either Ai or HumanPlayer
+			Player aHuman1 = new HumanPlayer (game.board,1);//refresh the board;first human player1(goes first)
+			Player aHuman2 = new HumanPlayer (game.board,2);//refresh the board;second human player2(goes second)
 
-			Player aHuman2 = new HumanPlayer (game.board,2);//can be either Ai or HumanPlayer
-
-			 while(game.play(aHuman1)&&game.play(aHuman2));//keep playing if condition is satisfied
-			 
+			while(game.play(aHuman1)&&game.play(aHuman2));//keep playing if condition is satisfied 
 		 }
+		 
 	}
 
 		 
 		 
 		 
 		 
+/**
+  * play
+  * @Title: play
+  * @Description: this method will reprint the board and check who has won the game and display any message if needed
+  * @param @param player
+  * @param @return   
+  * @return boolean    
+  * @throws
+  */
+
+
 public  boolean play(Player player) {
 	
+	 int[] coord=player.playChess();//see details about this method in AI class
 	
-	 int[] coord=player.playChess();//call playchess method, see details about this method in AI class
-	
-	 int row=coord[0];
-	 int col=coord[1];
-	 board[row][col]=player.getColor();
+	 int row=coord[0];//player's x coord
+	 int col=coord[1];//player's y coord
+	 board[row][col]=player.getColor();//change the representation in that position
 	 
+    //reprint the board
 	for(int i=0;i<15;i++) {
 		System.out.println();	
 		for(int j=0;j<15;j++) {
 			System.out.print(board[i][j] + " ");
 		}
 	}
-	
 			System.out.println();
-			System.out.println();
+			System.out.println();//so that there are two empty lines to separate the next board
 
+			
 			if(checkWon(coord[0], coord[1], board) ) {
 				 if( player.getColor() == 1) {
-					 System.out.println("Black win!");
+					 System.out.println("1 win");
 				 }
 				 else if( player.getColor() == 2) {
-					 System.out.println("White win!");
+					 System.out.println("2 win");
 				 }
 				 return false;
 				}
-
-return true;
+    return true;
 	}
+
 }

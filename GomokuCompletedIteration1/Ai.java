@@ -7,38 +7,35 @@ import java.util.*;
   *
   */
 
-//below comment is for my teammate(will be deleted after everything is settled.)
 
-//commenting is not complete(feel free to add more).. the code can be polished more if yall want to
-//when yall add the GUI, try to keep the coding style similar to mine
-//Few things to note here:
-
-//I have played and adjusted this AI for a long time
-//this AI will always take offense more serious than defense
-//and I believe Offense is the best way for defense
-
+/**
+  * @ClassName: Ai
+  * @Description: simulate a computer's play by giving value to different pattern of placing
+  * @author Haoyang Shi
+  * @date 2020 8.5    7:14:19
+  *
+  */
 
 public class Ai extends Player{
 	
-	private HashMap<String,Integer> map1=new HashMap<>();
-	private HashMap<String,Integer> map2=new HashMap<>();
+	private HashMap<String,Integer> map1=new HashMap<>();//stores for 1
+	private HashMap<String,Integer> map2=new HashMap<>();//stores for 2
 
 	/**
-	  *instance Ai. 
+	  * instance Ai. 
 	  * <p>Title: </p>
-	  * <p>Description: </p>
-	  * @param board
-	  * @param color
+	  * <p>Description: Ai constructor that take 2 parameters</p>
+	  * @param board     the board
+	  * @param color     indicate different turns/players
 	  */
 	public Ai(int[][] board,int color){
-		super(board,color);
+		super(board,color);//from Player(parents class)
 	}
 	
 	
 	/**
-	 *  you don't have to understand this block of code, it doesn't mean anything right now
-	 * I was using this method, but found out some mistake, then I decide to switch methods.
-	 * but I might use this block later, so I will just keep it.
+	 * this block doesn't mean anything right now
+	 *  I keep this for future reference.
 	map1.put("11111", 100000000);
 	map1.put("11112", 20000000);
 	map1.put("12111", 20000000);
@@ -58,47 +55,45 @@ public class Ai extends Player{
 	
 	 /*
 	  * <p>Title: playChess</p>
-	  * <p>Description: this method will return the spot that AI shold take</p>
-	  * @return
-	  * @see Player#playChess()
+	  * <p>Description: this method will return the spot that AI should take</p>
+	  * @return coord 
 	  */
 	
 	public int[] playChess(){
-		 
-		 int max=0,mark;//set mark=0
+		 //maximum means the best value to put the chess
+		 int max=0,mark;//set maximum=0 and set mark
 		 int[] coord=new int[2];//contain 2 spots
 		 coord[0]=0;// set first spot to 0
 		 coord[1]=0;// set second spot to 0
 		 
-			for(int i=0;i<board.length;i++)
+			for(int i=0;i<board.length;i++) {
 				for(int j=0;j<board.length;j++){ 
-					
-					if(board[i][j]==0)//check if its empty
-					{mark=checkMark	(i,j);
-					if(max<mark)
-					{
+					if(board[i][j]==0){//check if its empty
+					mark=checkMark(i,j);
+					if(max<mark){
 						max=mark;
 						 coord[0]=i;
 						 coord[1]=j;
 					}
 					}
-	    	}
-	 
+	         	}
+			}
 	 return coord;
 	 }
 	 
+	
 	/* public static void main(String[] args)
 	 {
 		 System.out.println(mark("22220"));
 	 }*/
 	 
-    public static int mark(String str)
-    {
+    public static int mark(String str){
+    	
     	int black=0,white=0,mark=0;
     	
     	for(int i=0;i<str.length();i++)
     	{
-    		if(str.charAt(i)=='1')
+    		if(str.charAt(i)=='1')//remember we create an empty string below and record every directions of placing? this is to count the number of time 1 and 2 appears(for the next block of code)
     			black++;
     		if(str.charAt(i)=='2')
     			white++;	
@@ -106,9 +101,8 @@ public class Ai extends Player{
     	}
     	
     	
-    	
+   // just know that different type of placing will return a different value of mark.(which is the core of this AI)	
    if(black==0){
-	   
    if(white==5) 	
     	mark=10000000;
    if(white==4) 	
@@ -134,7 +128,7 @@ public class Ai extends Player{
     mark=5;
     	}
     			
-    			return mark;
+  return mark;
     }
     
     
@@ -193,8 +187,8 @@ public class Ai extends Player{
 			map=map1;
 		else
 		map=map2;
-	return  mark(str);
-		
+	return  mark(str);	
 	}
+	
 	
 }

@@ -1,32 +1,28 @@
 /**
  * @Title: Player.java
  * @Package 
- * @Description: TODO
+ * @Description: this is a abstract class that includes the common methods for both human players and AI player
  * @author Haoyang Shi
  * @date 2020   7.28      7:15:11
  * @version V1.0
  */
 
+
 /**
   * @ClassName: Player
-  * @Description: TODO
+  * @Description: a abstract class that have common method for both AI and players
   * @author Haoyang Shi
   * @date 2020   7.29
   */
-//below comment is for my teammate(will be deleted after everything is settled.)
-
-//commenting is not complete(feel free to add more). the code can be polished more if yall want to
-//when yall add the GUI, try to keep the coding style similar to mine
-//TA told us to create a new class called common player which have common method for both AI and players
 public abstract class Player{
-	  protected int color;
+	  protected int color;//indicate different player's symbol
       protected int[][] board;
       
    
 	/**
 	  * new instance Player. 
 	  * <p>Title: Player</p>
-	  * <p>Description: initialize</p>
+	  * <p>Description: initialize plays and board</p>
 	  * @param board 
 	  * @param color
 	  */
@@ -41,7 +37,7 @@ public abstract class Player{
 	  * playChess()
 	  * TODO:
 	  * @Title: playChess
-	  * @Description: see AI class for details
+	  * @Description: see HumanPlayer class for details
 	  * @param @return   
 	  * @return int[]   
 	  * @throws
