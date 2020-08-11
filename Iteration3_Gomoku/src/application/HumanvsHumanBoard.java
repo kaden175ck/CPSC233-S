@@ -127,7 +127,7 @@ public class HumanvsHumanBoard {
         circle2.setStroke(Color.BLACK);
         circle2.setFill(Color.WHITE); 
         
-        Human2 = new Label("HumanPlayer1");
+        Human2 = new Label("HumanPlayer2");
         Human2.setFont(new Font(15));
         Human2.relocate(600, 350);
         Human2.setPrefWidth(300);

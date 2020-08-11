@@ -129,7 +129,7 @@ public class HumanvsAIBoard {
         circle2.setStroke(Color.BLACK);
         circle2.setFill(Color.WHITE); 
         
-        AI = new Label("HumanPlayer1");
+        AI = new Label("AI");
         AI.setFont(new Font(15));
         AI.relocate(600, 353);
         AI.setPrefWidth(300);
