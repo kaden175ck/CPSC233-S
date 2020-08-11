@@ -40,15 +40,9 @@ public class HumanvsAIBoard {
     
     
     private GoMokuBoard board; 
-
-
-    
     private Button quitButton; 
-
     private Label message;  
-    
     private Label victory; 
-    
     private Button restartButton;
     
 
@@ -94,7 +88,16 @@ public class HumanvsAIBoard {
         restartButton.relocate(450, 450);
         restartButton.setManaged(false);
         restartButton.resize(100,30);
-        //restartButton.setOnAction(e -> restartButtonClicked());
+        Stage window = new Stage();
+        restartButton.setOnAction(e -> {
+			try {
+				board.doQuit();
+				new GomokuApplication().start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
         
         
         Pane root = new Pane();
@@ -142,7 +145,7 @@ public class HumanvsAIBoard {
        
        private Game game;
        
-       private int winner = 0;
+      
   
         GoMokuBoard() {
             super(500,500);  
@@ -170,26 +173,14 @@ public class HumanvsAIBoard {
         }
 
         //clicking on a square will occupy board and board 2d array 
-        void doClickSquare(int row, int col)  {
-
-
-          /*  if ( board[row][col] != EMPTY ) {
-                if (currentPlayer == BLACK)
-                    message.setText("Player 1's turn");
-                else
-                    message.setText("Player 2's turn");
-                return;
-            }*/
-
-            
-
+       void doClickSquare(int row, int col)  {
+          
             board[row][col] = currentPlayer;  
             drawBoard();
 
             if (checkWinner(row,col)) {  
                 if (currentPlayer == WHITE) {
                 	gameInProgress = false;
-                	//showVictory("src/victoryScreen/VictoryScreen.fxml");
                 }
                 else {
                 	gameInProgress = false;
@@ -217,7 +208,7 @@ public class HumanvsAIBoard {
                 
             }
 
-        }  
+        }
         
         /*Title: checkWinner
          * Description: Using the checkwon class from Game, check if pieces are 5 in a row
@@ -263,12 +254,12 @@ public class HumanvsAIBoard {
          * Title: draw piece
          * description: draws a token depending on if its white or black
          */
-        private void drawPiece(GraphicsContext g, int piece, int row, int col) {
-            if (piece == WHITE) {
+        private void drawPiece(GraphicsContext g, int currentPlayer, int row, int col) {
+            if (currentPlayer == WHITE) {
                 g.setFill(Color.WHITE);
                 g.fillRect(8 + 24 * col, 8 + 24 * row, 12, 12);
             }
-            else {
+            if(currentPlayer == BLACK) {
                 g.setFill(Color.BLACK);
                 g.fillRect(8 + 24*col, 8 + 24*row, 12, 12);
             }
@@ -280,39 +271,34 @@ public class HumanvsAIBoard {
         * description: when mouse is clicked over square, the drawn piece will occupy the square 
         * returns nothing
         */
-        public void humanMousePressed(MouseEvent evt) {
-        	if(gameInProgress == true) {
-                int col = (int)((evt.getX() - 2) / 24);
-                int row = (int)((evt.getY() - 2) / 24);
-                if (col >= 0 && col < 15 && row >= 0 && row < 15 && board[row][col] == EMPTY)
-                	if(checkWinner(row, col))
-                    doClickSquare(row,col);
-            }
-        }
+       
         public void AIMousePressed(MouseEvent evt) {
         	if(gameInProgress == true) {
         		Player Human = new HumanPlayer(board, BLACK);
+        		//currentPlayer = BLACK;
                 int col = (int)((evt.getX() - 2) / 24);
                 int row = (int)((evt.getY() - 2) / 24);
-                if(checkWinner(row, col))
-                	if (col >= 0 && col < 15 && row >= 0 && row < 15 && board[row][col] == EMPTY) {
+                if(checkWinner(row, col) && col >= 0 && col < 15 && row >= 0 && row < 15 && board[row][col] == EMPTY){
+                	//board[row][col] = BLACK;
+                	//drawBoard();
                     doClickSquare(row,col);
-                	}	
-            }else {
-        		victory.setText("You Win!");
+                    if(gameInProgress == true) {
+                    	Player AI = new Ai (board,WHITE);
+                    	//currentPlayer = WHITE;
+                    	int AIrow = AI.playChess()[0];
+                    	int AIcol = AI.playChess()[1];
+                    	if(checkWinner(AIrow, AIcol) && board[AIrow][AIcol] == EMPTY) {
+                    		//board[row][col] = WHITE;
+                    		//drawBoard();
+                    		doClickSquare( AIrow, AIcol);
+                    	}
+                    	}else{
+                        	victory.setText("You Win!");
+                        }
+                	}
+            }else{
+        		victory.setText("AI Win!");
         	}
-        	if(gameInProgress == true) {
-        	Player AI = new Ai (board,WHITE);
-        	int AIrow = AI.playChess()[0];
-        	int AIcol = AI.playChess()[1];
-        	if(checkWinner(AIrow, AIcol)) {
-        		if(board[AIrow][AIcol] == EMPTY){
-        			doClickSquare( AIrow, AIcol);
-        		}
-        	}
-        	}else {
-            	victory.setText("AI Win!");
-            }
         }
        
     }

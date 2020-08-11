@@ -48,8 +48,11 @@ public class HumanvsHumanBoard {
     private Label message;  
     
    
+    private Label victory; 
     
+    private Button restartButton;
    
+    private GomokuApplication gomoku;
 
  
     //public void start(Stage stage) {
@@ -79,16 +82,35 @@ public class HumanvsHumanBoard {
         message.setPrefWidth(300);
         message.setPrefHeight(80);
         
+        victory = new Label();
+        victory.setFont(new Font(30));
+        victory.relocate(310, 500);
+        victory.setPrefWidth(300);
+        victory.setPrefHeight(80);
         
+        
+        restartButton = new Button("Restart");
+        restartButton.relocate(450, 450);
+        restartButton.setManaged(false);
+        restartButton.resize(100,30);
+        Stage window = new Stage();
+        restartButton.setOnAction(e -> {
+			try {
+				board.doQuit();
+				new GomokuApplication().start(window);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
         
         Pane root = new Pane();
-        
         root.setPrefWidth(800);
         root.setPrefHeight(600);
         
  
 
-        root.getChildren().addAll(board, quitButton, message);
+        root.getChildren().addAll(board, quitButton, message, victory, restartButton);
         root.setStyle("-fx-background-color: white; "
                            + "-fx-border-color: black; -fx-border-width:3");
         Boardscene = new Scene(root);
@@ -264,6 +286,11 @@ public class HumanvsHumanBoard {
                 if (col >= 0 && col < 15 && row >= 0 && row < 15 && board[row][col] == EMPTY)
                 	if(checkWinner(row, col))
                     doClickSquare(row,col);
+            }else {
+            	if(currentPlayer == 1)
+            	victory.setText("Black Win!");
+            	if(currentPlayer == 2)
+            	victory.setText("Black Win!");
             }
         }
         public void AIMousePressed(MouseEvent evt) {
