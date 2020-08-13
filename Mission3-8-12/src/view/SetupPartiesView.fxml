@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SetupPartyController">
+   <children>
+      <Label fx:id="SelectPartyLable" layoutX="24.0" layoutY="65.0" text="Select party to setup" />
+      <ChoiceBox fx:id="SelectPartyChoiceBox" layoutX="212.0" layoutY="57.0" prefWidth="150.0" />
+      <Label fx:id="PartyNameLable" layoutX="46.0" layoutY="165.0" text="Party name" />
+      <Button fx:id="ClearButton" layoutX="29.0" layoutY="270.0" mnemonicParsing="false" onAction="#ClearButtonClicked" text="Clear" />
+      <Button fx:id="SetPartyButton" layoutX="106.0" layoutY="270.0" mnemonicParsing="false" onAction="#SetPartyButtonClicked" text="Set Party Info" />
+      <Button fx:id="SubmitButton" layoutX="270.0" layoutY="270.0" mnemonicParsing="false" onAction="#SubmitButtonClicked" text="Submit All Party Info" />
+      <TextField fx:id="PartyNameTextField" layoutX="185.0" layoutY="157.0" prefWidth="198.0" />
+   </children>
+</Pane>
